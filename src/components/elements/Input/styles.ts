@@ -21,6 +21,7 @@ export const Content = styled.View<TContentTypeStyleProps>`
       ? theme.layout[1]
       : theme.border.width.md}px;
     border-color: ${borderColor};
+    background-color: ${theme.colors.inputBackground};
   `};
 `;
 

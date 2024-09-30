@@ -1,9 +1,5 @@
 import { memo, useCallback, useMemo, useState } from 'react';
-import {
-  NativeSyntheticEvent,
-  TextInputFocusEventData,
-  TextInputProps,
-} from 'react-native';
+import { TextInputProps } from 'react-native';
 import { useTheme } from 'styled-components/native';
 
 import * as S from './styles';
@@ -14,7 +10,7 @@ type Props = TextInputProps & {
 };
 
 export const Input = memo(
-  ({ formError, isDisabled = false, onFocus, onBlur, ...rest }: Props) => {
+  ({ formError, isDisabled = false, ...rest }: Props) => {
     const [isFocused, setIsFocused] = useState(false);
     const theme = useTheme();
 
@@ -36,25 +32,13 @@ export const Input = memo(
       theme.colors.inputBorderInFocus,
     ]);
 
-    const handleFocusInput = useCallback(
-      (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-        setIsFocused(true);
-        if (onFocus) {
-          onFocus(e);
-        }
-      },
-      [onFocus],
-    );
+    const handleFocusInput = useCallback(() => {
+      setIsFocused(true);
+    }, []);
 
-    const handleBlurInput = useCallback(
-      (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-        setIsFocused(false);
-        if (onBlur) {
-          onBlur(e);
-        }
-      },
-      [onBlur],
-    );
+    const handleBlurInput = useCallback(() => {
+      setIsFocused(false);
+    }, []);
 
     return (
       <S.Container>
