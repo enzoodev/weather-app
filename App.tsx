@@ -1,14 +1,17 @@
 /* eslint-disable global-require */
 import React, { useCallback } from 'react';
+import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components/native';
 import { ToastProvider } from 'react-native-toast-notifications';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { PersistGate } from 'redux-persist/integration/react';
 import { RFValue } from 'react-native-responsive-fontsize';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 
 import { Routes } from '@/routes';
 import { theme } from '@/theme';
+import { persistor, store } from '@/store';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -32,11 +35,15 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <SafeAreaProvider>
-        <ToastProvider offsetTop={RFValue(40)}>
-          <Routes onReady={onLayoutRootView} />
-        </ToastProvider>
-      </SafeAreaProvider>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <SafeAreaProvider>
+            <ToastProvider offsetTop={RFValue(40)}>
+              <Routes onReady={onLayoutRootView} />
+            </ToastProvider>
+          </SafeAreaProvider>
+        </PersistGate>
+      </Provider>
     </ThemeProvider>
   );
 };
