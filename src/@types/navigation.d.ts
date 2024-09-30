@@ -1,7 +1,8 @@
-type AppStackParamsList = {
-  Locations: undefined;
-};
-
-type AuthStackParamsList = {
-  Login: undefined;
-};
+export declare global {
+  namespace ReactNavigation {
+    interface RootParamList {
+      Locations: undefined;
+      Login: undefined;
+    }
+  }
+}
