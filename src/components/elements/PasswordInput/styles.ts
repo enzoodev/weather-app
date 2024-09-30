@@ -1,15 +1,17 @@
 import styled, { css } from 'styled-components/native';
 
-type TContentTypeStyleProps = {
+type ContentTypeStyleProps = {
   hasFormError: boolean;
   borderColor: string;
 };
 
 export const Container = styled.View`
+  width: 100%;
   border-radius: ${({ theme }) => theme.border.radius.md}px;
 `;
 
-export const Content = styled.View<TContentTypeStyleProps>`
+export const Content = styled.View<ContentTypeStyleProps>`
+  width: 100%;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -27,9 +29,9 @@ export const Content = styled.View<TContentTypeStyleProps>`
 
 export const Input = styled.TextInput`
   ${({ theme }) => css`
-    width: 100%;
-    padding: 0;
+    width: 80%;
     border-width: 0;
+    padding: 0;
     font-family: ${theme.fonts.main.regular};
     font-size: ${theme.fontSizes.md}px;
     color: ${theme.colors.textSecondary};

@@ -1,18 +1,24 @@
 import { memo, useCallback, useMemo, useState } from 'react';
-import { TextInputProps } from 'react-native';
+import { TextInputProps, ViewProps, TouchableOpacity } from 'react-native';
 import { useTheme } from 'styled-components/native';
+import { IconEye, IconEyeOff } from 'tabler-react-native/icons';
 
 import * as S from './styles';
 
 type Props = TextInputProps & {
+  viewProps?: ViewProps;
   formError?: string;
-  isDisabled?: boolean;
 };
 
-export const Input = memo(
-  ({ formError, isDisabled = false, ...rest }: Props) => {
+export const PasswordInput = memo(
+  ({ viewProps, formError, ...rest }: Props) => {
+    const [isPasswordType, setIsPasswordType] = useState(true);
     const [isFocused, setIsFocused] = useState(false);
     const theme = useTheme();
+
+    const handleToggleIsPasswordType = useCallback(() => {
+      setIsPasswordType(prevState => !prevState);
+    }, []);
 
     const borderColor = useMemo(() => {
       if (formError) {
@@ -41,17 +47,33 @@ export const Input = memo(
     }, []);
 
     return (
-      <S.Container>
+      <S.Container {...viewProps}>
         <S.Content hasFormError={!!formError} borderColor={borderColor}>
           <S.Input
+            autoCapitalize="none"
             placeholderTextColor={theme.colors.placeholder}
             selectionColor={theme.colors.placeholder}
+            secureTextEntry={isPasswordType}
+            autoCorrect={false}
             onFocus={handleFocusInput}
             onBlur={handleBlurInput}
-            autoCorrect={false}
-            editable={!isDisabled}
             {...rest}
           />
+          <TouchableOpacity onPress={handleToggleIsPasswordType}>
+            {isPasswordType ? (
+              <IconEye
+                stroke={1.25}
+                size={theme.iconSizes.sm}
+                color={theme.colors.textSecondary}
+              />
+            ) : (
+              <IconEyeOff
+                stroke={1.25}
+                size={theme.iconSizes.sm}
+                color={theme.colors.textSecondary}
+              />
+            )}
+          </TouchableOpacity>
         </S.Content>
         {!!formError && <S.FormError>{formError}</S.FormError>}
       </S.Container>
