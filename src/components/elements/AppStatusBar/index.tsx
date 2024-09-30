@@ -1,20 +1,21 @@
-import { StatusBar, StatusBarProps } from 'expo-status-bar';
-import { useIsFocused } from '@react-navigation/native';
+/* eslint-disable react/style-prop-object */
+import { StatusBar } from 'expo-status-bar';
+import { useTheme } from 'styled-components/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import * as S from './styles';
 
-export const AppStatusBar = (props: StatusBarProps) => {
-  const isFocused = useIsFocused();
+export const AppStatusBar = () => {
+  const theme = useTheme();
   const insets = useSafeAreaInsets();
-
-  if (!isFocused) {
-    return null;
-  }
 
   return (
     <S.Container paddingTop={insets.top}>
-      <StatusBar {...props} />
+      <StatusBar
+        translucent
+        style="light"
+        backgroundColor={theme.colors.main}
+      />
     </S.Container>
   );
 };
