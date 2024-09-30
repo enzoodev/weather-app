@@ -9,6 +9,9 @@ import * as Font from 'expo-font';
 
 import { Routes } from '@/routes';
 import { theme } from '@/theme';
+import { Provider } from 'react-redux';
+import { persistor, store } from '@/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -32,11 +35,15 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <SafeAreaProvider>
-        <ToastProvider offsetTop={RFValue(40)}>
-          <Routes onReady={onLayoutRootView} />
-        </ToastProvider>
-      </SafeAreaProvider>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <SafeAreaProvider>
+            <ToastProvider offsetTop={RFValue(40)}>
+              <Routes onReady={onLayoutRootView} />
+            </ToastProvider>
+          </SafeAreaProvider>
+        </PersistGate>
+      </Provider>
     </ThemeProvider>
   );
 };
