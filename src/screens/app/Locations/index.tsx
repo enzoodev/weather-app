@@ -2,6 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { FlatList, ListRenderItem, RefreshControl } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components/native';
+import { useTranslation } from 'react-i18next';
 import { IconMapOff, IconPlus } from 'tabler-react-native/icons';
 
 import { useLocations } from '@/features/locations';
@@ -10,6 +11,7 @@ import { TLocation } from '@/domain/entities/Location';
 
 import { Header } from '@/components/elements/Header';
 import { LocationItem } from '@/components/modules/LocationItem';
+import { LocationSkeletonItem } from '@/components/modules/LocationSkeletonItem';
 
 import * as S from './styles';
 
@@ -18,6 +20,12 @@ export const Locations: React.FC = () => {
   const navigation = useNavigation();
   const { data, isLoading, isRefetching, fetchLocations, refetchLocations } =
     useLocations();
+  const { t } = useTranslation();
+  const hasMaximunLocations = data.length === 3;
+
+  const handleCreateLocation = useCallback(() => {
+    navigation.navigate('CreateLocation');
+  }, [navigation]);
 
   const handleOpenLocationDetails = useCallback(
     (id: number) => {
@@ -37,7 +45,7 @@ export const Locations: React.FC = () => {
   const renderItem: ListRenderItem<TLocation> = useCallback(
     ({ item }) => {
       if (isLoading) {
-        return <ChecklistSkeletonItem />;
+        return <LocationSkeletonItem />;
       }
 
       return (
@@ -70,15 +78,17 @@ export const Locations: React.FC = () => {
         }
         ListHeaderComponent={
           <Header
-            title="Locais"
+            title={t('location.title')}
             rightComponent={
-              <S.AddButton onPress={() => {}}>
-                <IconPlus
-                  stroke={1.5}
-                  size={theme.iconSizes.lg}
-                  color={theme.colors.mainContrast}
-                />
-              </S.AddButton>
+              !hasMaximunLocations && (
+                <S.AddButton onPress={handleCreateLocation}>
+                  <IconPlus
+                    stroke={1.5}
+                    size={theme.iconSizes.lg}
+                    color={theme.colors.mainContrast}
+                  />
+                </S.AddButton>
+              )
             }
           />
         }
@@ -89,7 +99,7 @@ export const Locations: React.FC = () => {
               size={theme.iconSizes.xl}
               color={theme.colors.textSecondary}
             />
-            <S.ListEmptyTitle>Nenhum local encontrado.</S.ListEmptyTitle>
+            <S.ListEmptyTitle>{t('location.empty_location')}</S.ListEmptyTitle>
           </S.ListEmptyCard>
         }
       />

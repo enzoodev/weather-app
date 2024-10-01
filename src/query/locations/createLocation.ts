@@ -24,6 +24,7 @@ export const createLocation = async ({ city }: CreateLocationParams) => {
       minTemp: weather.main.temp_min,
       humidity: weather.main.humidity,
       feelsLike: weather.main.feels_like,
+      iconCode: weather.weather[0].icon,
     } as TLocation,
   });
 
