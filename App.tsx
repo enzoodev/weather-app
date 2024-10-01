@@ -6,12 +6,14 @@ import { ToastProvider } from 'react-native-toast-notifications';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { PersistGate } from 'redux-persist/integration/react';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { I18nextProvider } from 'react-i18next';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 
 import { Routes } from '@/routes';
 import { theme } from '@/theme';
 import { persistor, store } from '@/store';
+import i18n from '@/lib/language/i18n';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -38,9 +40,11 @@ const App: React.FC = () => {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <SafeAreaProvider>
-            <ToastProvider offsetTop={RFValue(40)}>
-              <Routes onReady={onLayoutRootView} />
-            </ToastProvider>
+            <I18nextProvider i18n={i18n}>
+              <ToastProvider offsetTop={RFValue(40)}>
+                <Routes onReady={onLayoutRootView} />
+              </ToastProvider>
+            </I18nextProvider>
           </SafeAreaProvider>
         </PersistGate>
       </Provider>
