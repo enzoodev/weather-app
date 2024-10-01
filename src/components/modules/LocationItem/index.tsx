@@ -1,4 +1,7 @@
 import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useTheme } from 'styled-components/native';
+import { IconChevronRight } from 'tabler-react-native/icons';
 
 import { TLocation } from '@/domain/entities/Location';
 
@@ -10,5 +13,33 @@ type Props = {
 };
 
 export const LocationItem = memo(({ item, onPress }: Props) => {
-  return <S.Container />;
+  const theme = useTheme();
+  const { t } = useTranslation();
+  const photoUri = `https://openweathermap.org/img/wn/${item.iconCode}.png`;
+
+  return (
+    <S.Container onPress={onPress}>
+      <S.ContentWrapper>
+        <S.Icon source={{ uri: photoUri }} resizeMode="contain" />
+        <S.Content>
+          <S.Title>{item.city}</S.Title>
+          <S.InfoContainer>
+            <S.InfoContainerRow>
+              <S.InfoLabel>{t('location.description')}:</S.InfoLabel>
+              <S.InfoValue>{item.temperature}</S.InfoValue>
+            </S.InfoContainerRow>
+            <S.InfoContainerRow>
+              <S.InfoLabel>{t('location.temperature')}:</S.InfoLabel>
+              <S.InfoValue>{item.description}</S.InfoValue>
+            </S.InfoContainerRow>
+          </S.InfoContainer>
+        </S.Content>
+      </S.ContentWrapper>
+      <IconChevronRight
+        stroke={1.5}
+        size={theme.iconSizes.md}
+        color={theme.colors.textSecondary}
+      />
+    </S.Container>
+  );
 });
