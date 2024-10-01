@@ -9,5 +9,6 @@ export type TLocation = {
   minTemp: number;
   humidity: number;
   feelsLike: number;
+  iconCode: string;
   isLoadingDelete?: boolean;
 };

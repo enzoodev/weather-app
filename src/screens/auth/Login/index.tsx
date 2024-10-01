@@ -5,6 +5,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useToast } from 'react-native-toast-notifications';
 import { useTheme } from 'styled-components/native';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useTranslation } from 'react-i18next';
 
 import { useAuth } from '@/features/auth';
 
@@ -26,6 +27,7 @@ export const Login = () => {
   const insets = useSafeAreaInsets();
   const dimensions = useWindowDimensions();
   const { login, isLoadingLogin } = useAuth();
+  const { t } = useTranslation();
 
   const {
     control,
@@ -44,13 +46,13 @@ export const Login = () => {
       try {
         await login(data);
       } catch (error) {
-        toast.show('Não foi possível entrar na sua conta.', {
+        toast.show(t('login.login_error'), {
           type: 'danger',
           placement: 'top',
         });
       }
     },
-    [login, toast],
+    [login, t, toast],
   );
 
   return (
@@ -71,18 +73,18 @@ export const Login = () => {
               }}
             />
             <S.FormWrapper>
-              <S.Label>Acesse sua conta</S.Label>
+              <S.Label>{t('login.access_account')}</S.Label>
               <Controller
                 control={control}
                 name="email"
                 render={({ field: { onChange, value } }) => (
-                  <Label title="Email">
+                  <Label title={t('login.email')}>
                     <Input
                       value={value}
                       onChangeText={onChange}
                       formError={errors.email?.message}
                       keyboardType="email-address"
-                      placeholder="Email"
+                      placeholder={t('login.email')}
                       autoCapitalize="none"
                     />
                   </Label>
@@ -92,11 +94,11 @@ export const Login = () => {
                 control={control}
                 name="password"
                 render={({ field: { onChange, value } }) => (
-                  <Label title="Senha">
+                  <Label title={t('login.password')}>
                     <PasswordInput
                       value={value}
                       onChangeText={onChange}
-                      placeholder="Senha"
+                      placeholder={t('login.password')}
                       formError={errors.password?.message}
                       returnKeyType="send"
                       onSubmitEditing={handleSubmit(onSubmit)}
@@ -106,7 +108,7 @@ export const Login = () => {
               />
             </S.FormWrapper>
             <Button
-              title="Entrar"
+              title={t('login.enter')}
               onPress={handleSubmit(onSubmit)}
               isLoading={isLoadingLogin}
             />

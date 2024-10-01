@@ -1,0 +1,15 @@
+{
+  "login": {
+    "access_account": "Access your account",
+    "email": "Email",
+    "password": "Password",
+    "enter": "Enter",
+    "login_error": "Unable to login to your account."
+  },
+  "location": {
+    "temperature": "Temperature",
+    "description": "Description",
+    "empty_location": "No locations found.",
+    "title": "Locations"
+  }
+}

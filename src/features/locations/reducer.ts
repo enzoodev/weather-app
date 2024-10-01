@@ -31,13 +31,16 @@ const locationsSlice = createSlice({
     });
     builder.addCase(refetchLocationsAction.pending, state => {
       state.isRefetching = true;
+      state.isLoading = true;
     });
     builder.addCase(refetchLocationsAction.fulfilled, (state, action) => {
       state.data = action.payload;
       state.isRefetching = false;
+      state.isLoading = false;
     });
     builder.addCase(refetchLocationsAction.rejected, state => {
       state.isRefetching = false;
+      state.isLoading = false;
     });
     builder.addCase(createLocationAction.pending, state => {
       state.isLoadingRequest = true;

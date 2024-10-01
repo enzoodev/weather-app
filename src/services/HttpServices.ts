@@ -3,8 +3,6 @@ import { TRequestConfig } from '@/domain/models/RequestConfig';
 import { HttpMethod } from '@/enums/HttpMethod';
 
 import { buildUrl } from '@/utils/buildUrl';
-import { AppError } from '@/utils/error/AppError';
-import { defaultErrorMessage } from '@/utils/error/defaultErrorMessage';
 
 type RegisterInterceptTokenManager = {
   token?: string;
@@ -24,44 +22,36 @@ export class HttpServices {
     body,
     params,
   }: TRequestConfig): Promise<T> => {
-    try {
-      const constructedUrl = buildUrl({
-        baseUrl: hasBaseUrl ? this.baseUrl : undefined,
-        url,
-        params,
-      });
+    const constructedUrl = buildUrl({
+      baseUrl: hasBaseUrl ? this.baseUrl : undefined,
+      url,
+      params,
+    });
 
-      const response = await fetch(constructedUrl, {
-        method,
-        body: body ? JSON.stringify(body) : undefined,
-        credentials: 'include',
-        headers: {
-          Authorization: `Bearer ${this.registerInterceptTokenManager.token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+    const response = await fetch(constructedUrl, {
+      method,
+      body: body ? JSON.stringify(body) : undefined,
+      credentials: 'include',
+      headers: {
+        Authorization: `Bearer ${this.registerInterceptTokenManager.token}`,
+        'Content-Type': 'application/json',
+      },
+    });
 
-      if (!response.ok) {
-        if (
-          response.status === 401 &&
-          this.registerInterceptTokenManager.logout
-        ) {
-          this.registerInterceptTokenManager.logout();
-        }
-
-        const error = await response.json();
-        throw new AppError(error.message ?? defaultErrorMessage);
+    if (!response.ok) {
+      if (
+        response.status === 401 &&
+        this.registerInterceptTokenManager.logout
+      ) {
+        this.registerInterceptTokenManager.logout();
       }
 
-      const data: T = await response.json();
-      return data;
-    } catch (error) {
-      if (error instanceof AppError) {
-        throw error.message;
-      }
-
-      throw defaultErrorMessage;
+      const error = await response.json();
+      throw new Error(error.message);
     }
+
+    const data: T = await response.json();
+    return data;
   };
 
   public static readonly get = async <T = unknown>(

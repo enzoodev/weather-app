@@ -1,0 +1,15 @@
+{
+  "login": {
+    "access_account": "Acesse sua conta",
+    "email": "Email",
+    "password": "Senha",
+    "enter": "Entrar",
+    "login_error": "Não foi possível entrar na sua conta."
+  },
+  "location": {
+    "temperature": "Temperatura",
+    "description": "Descrição",
+    "empty_location": "Nenhuma localização encontrada.",
+    "title": "Locais"
+  }
+}
