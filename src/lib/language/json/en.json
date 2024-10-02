@@ -20,5 +20,10 @@
     "password_must_be": "The password must be {{password}}",
     "state_required": "State is required.",
     "city_required": "City is required."
+  },
+  "selectDropDown": {
+    "placeholder_search": "Search...",
+    "list_empty": "No items found.",
+    "placeholder": "Select an option"
   }
 }
