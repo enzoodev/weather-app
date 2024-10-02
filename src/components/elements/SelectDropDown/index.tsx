@@ -20,7 +20,7 @@ export type SelectDropDownItem = {
 
 type Props = ViewProps & {
   placeholder: string;
-  value: SelectDropDownItem | null;
+  value: string | null;
   items: SelectDropDownItem[];
   onSelectValue: (value: SelectDropDownItem) => void;
   formError?: string;
@@ -34,6 +34,7 @@ export const SelectDropDown = memo(
     const theme = useTheme();
     const isShowPlaceholder = !value;
     const hasFormError = !!formError;
+    const selectedItemLabel = items.find(item => item.value === value)?.label;
 
     const filteredItems = useMemo(
       () =>
@@ -67,7 +68,7 @@ export const SelectDropDown = memo(
       }
 
       return filteredItems.map(item => {
-        const isSelected = item.value === value?.value;
+        const isSelected = item.value === value;
 
         return (
           <S.Item
@@ -104,7 +105,7 @@ export const SelectDropDown = memo(
                 {placeholder || t('selectDropDown.placeholder')}
               </S.Placeholder>
             ) : (
-              <S.Title>{value.label}</S.Title>
+              <S.Title>{selectedItemLabel}</S.Title>
             )}
             {isOpen ? (
               <IconChevronUp
