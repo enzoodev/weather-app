@@ -42,11 +42,15 @@ export const SelectDropDown = memo(
       const result: SelectDropDownItem[] = [];
 
       for (let i = 0; i < items.length; i++) {
+        if (result.length >= 10) {
+          break;
+        }
+
         const item = items[i];
         const matches = searchWords.every(word =>
           item.label.toLowerCase().includes(word),
         );
-        if (matches && result.length < 10) {
+        if (matches) {
           result.push(item);
         }
       }
