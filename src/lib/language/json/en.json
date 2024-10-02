@@ -16,7 +16,18 @@
     "create_location_error": "Unable to create location.",
     "state_label": "State",
     "city_label": "City",
-    "submit_button": "Save"
+    "submit_button": "Save",
+    "location_details_title": "Location Details",
+    "delete_location_success": "Location deleted successfully.",
+    "delete_location_error": "Failed to delete location.",
+    "country_label": "Country",
+    "weather_condition_label": "Weather Condition",
+    "description_label": "Description",
+    "temperature_label": "Temperature",
+    "max_temp_label": "Max Temperature",
+    "min_temp_label": "Min Temperature",
+    "humidity_label": "Humidity",
+    "feels_like_label": "Feels Like"
   },
    "validation": {
     "email_valid": "Please enter a valid email",
