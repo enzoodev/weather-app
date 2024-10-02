@@ -10,7 +10,13 @@
     "temperature": "Temperatura",
     "description": "Descrição",
     "empty_location": "Nenhuma localização encontrada.",
-    "title": "Locais"
+    "title": "Locais",
+    "create_location_title": "Cadastrar local",
+    "create_location_success": "Local cadastrado com sucesso.",
+    "create_location_error": "Não foi possível cadastrar o local.",
+    "state_label": "Estado",
+    "city_label": "Cidade",
+    "submit_button": "Salvar"
   },
   "validation": {
     "email_valid": "Por favor, insira um e-mail válido",

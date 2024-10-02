@@ -10,7 +10,13 @@
     "temperature": "Temperature",
     "description": "Description",
     "empty_location": "No locations found.",
-    "title": "Locations"
+    "title": "Locations",
+    "create_location_title": "Create location",
+    "create_location_success": "Location created successfully.",
+    "create_location_error": "Unable to create location.",
+    "state_label": "State",
+    "city_label": "City",
+    "submit_button": "Save"
   },
    "validation": {
     "email_valid": "Please enter a valid email",
