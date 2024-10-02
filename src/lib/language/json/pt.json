@@ -19,7 +19,7 @@
     "submit_button": "Salvar",
     "location_details_title": "Detalhes do Local",
     "delete_location_success": "Local excluído com sucesso.",
-    "delete_location_error": "Falha ao excluir a local.",
+    "delete_location_error": "Falha ao excluir o local.",
     "country_label": "País",
     "weather_condition_label": "Condição do Tempo",
     "description_label": "Descrição",
