@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import { memo, useCallback, useMemo, useState } from 'react';
 import { ViewProps } from 'react-native';
 import { useTheme } from 'styled-components/native';
@@ -36,16 +37,22 @@ export const SelectDropDown = memo(
     const hasFormError = !!formError;
     const selectedItemLabel = items.find(item => item.value === value)?.label;
 
-    const filteredItems = useMemo(
-      () =>
-        items.filter(item =>
-          searchText
-            .toLowerCase()
-            .split(/\s+/)
-            .every(word => item.label.toLowerCase().includes(word)),
-        ),
-      [items, searchText],
-    );
+    const filteredItems = useMemo(() => {
+      const searchWords = searchText.toLowerCase().split(/\s+/);
+      const result: SelectDropDownItem[] = [];
+
+      for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        const matches = searchWords.every(word =>
+          item.label.toLowerCase().includes(word),
+        );
+        if (matches && result.length < 10) {
+          result.push(item);
+        }
+      }
+
+      return result;
+    }, [items, searchText]);
 
     const toggleOpen = useCallback(() => {
       setIsOpen(prevState => !prevState);
