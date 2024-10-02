@@ -2,7 +2,7 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { getLocales } from 'expo-localization';
 
-import { SupportedLanguages } from './SupportedLanguages';
+import { SupportedLanguages } from '@/enums/SupportedLanguages';
 import en from './json/en.json';
 import pt from './json/pt.json';
 
