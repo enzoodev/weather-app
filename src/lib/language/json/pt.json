@@ -16,7 +16,18 @@
     "create_location_error": "Não foi possível cadastrar o local.",
     "state_label": "Estado",
     "city_label": "Cidade",
-    "submit_button": "Salvar"
+    "submit_button": "Salvar",
+    "location_details_title": "Detalhes do Local",
+    "delete_location_success": "Local excluído com sucesso.",
+    "delete_location_error": "Falha ao excluir a local.",
+    "country_label": "País",
+    "weather_condition_label": "Condição do Tempo",
+    "description_label": "Descrição",
+    "temperature_label": "Temperatura",
+    "max_temp_label": "Temperatura Máxima",
+    "min_temp_label": "Temperatura Mínima",
+    "humidity_label": "Umidade",
+    "feels_like_label": "Sensação Térmica"
   },
   "validation": {
     "email_valid": "Por favor, insira um e-mail válido",
