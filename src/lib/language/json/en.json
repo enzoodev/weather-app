@@ -11,5 +11,14 @@
     "description": "Description",
     "empty_location": "No locations found.",
     "title": "Locations"
+  },
+   "validation": {
+    "email_valid": "Please enter a valid email",
+    "email_required": "Email is required",
+    "email_must_be": "The email must be {{email}}",
+    "password_required": "Password is required",
+    "password_must_be": "The password must be {{password}}",
+    "state_required": "State is required.",
+    "city_required": "City is required."
   }
 }
