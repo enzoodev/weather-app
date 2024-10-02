@@ -15,6 +15,13 @@ export const useLocations = () => {
   const dispatch = useAppDispatch();
   const locations = useAppSelector(state => state.locations);
 
+  const getLocation = useCallback(
+    (id: number) => {
+      return locations.data.find(location => location.id === id);
+    },
+    [locations.data],
+  );
+
   const fetchLocations = useCallback(async () => {
     await dispatch(fetchLocationsAction()).unwrap();
   }, [dispatch]);
@@ -39,6 +46,7 @@ export const useLocations = () => {
 
   return {
     ...locations,
+    getLocation,
     fetchLocations,
     refetchLocations,
     createLocation,
