@@ -16,6 +16,7 @@ export const theme = {
     inputBackground: '#F7F7F8',
     inputBorder: '#D9D8DA',
     inputBorderInFocus: '#9F9BA1',
+    searchText: '#85878A',
     cardBackground: '#F7F7F8',
     cardBorder: '#D9D8DA',
     cardBorderInner: '#C9C5CB',
