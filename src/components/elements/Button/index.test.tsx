@@ -32,11 +32,4 @@ describe('Button Component', () => {
     const activityIndicator = getByTestId('loading-indicator');
     expect(activityIndicator).toBeTruthy();
   });
-
-  // it('should disable the button when isDisabled is true', () => {
-  //   const { getByText } = renderButton({ isDisabled: true });
-  //   const button = getByText('Test Button');
-  //   fireEvent.press(button);
-  //   expect(mockOnPress).not.toHaveBeenCalled();
-  // });
 });
