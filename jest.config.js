@@ -15,9 +15,12 @@ module.exports = {
     'lcov'
   ],
   transform: {
-    "^.+\\.(ts|tsx)$": "babel-jest",
+    '^.+\\.(ts|tsx|js|jsx)$': 'babel-jest',
   },
+  transformIgnorePatterns: [
+    '/node_modules/(?!react-redux)/',
+  ],
   moduleNameMapper: {
-    '\\.(svg)$': '<rootDir>/__mocks__/svgMock.js',
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
 }
