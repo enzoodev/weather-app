@@ -21,7 +21,6 @@
     "expo-splash-screen": "~0.27.5",
     "expo-status-bar": "~1.12.1",
     "i18next": "^23.15.1",
-    "miragejs": "^0.2.0-alpha.3",
     "react": "18.2.0",
     "react-hook-form": "^7.53.0",
     "react-i18next": "^15.0.2",
