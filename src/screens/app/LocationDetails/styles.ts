@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components/native';
 export const Container = styled.ScrollView`
   flex: 1;
   ${({ theme }) => css`
-    padding: ${theme.layout[4]};
+    padding: ${theme.layout[4]}px;
     background-color: ${theme.colors.background};
   `}
 `;
@@ -16,14 +16,14 @@ export const LoadingContainer = styled.View`
 
 export const Content = styled.View`
   ${({ theme }) => css`
-    gap: ${theme.layout[4]};
+    gap: ${theme.layout[4]}px;
     margin-top: ${theme.layout[4]}px;
   `}
 `;
 
 export const InfoWrapper = styled.View`
   ${({ theme }) => css`
-    gap: ${theme.layout[3]};
+    gap: ${theme.layout[3]}px;
   `}
 `;
 
