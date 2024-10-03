@@ -37,12 +37,15 @@ export const Button = memo(
         onPress={onPress}
         bgColor={buttonBgColor}
         borderColor={borderColor ?? buttonBgColor}
-        disabled={isDisabled ?? isLoading}
+        disabled={isDisabled || isLoading}
         isDisabled={isDisabled}
         {...rest}
       >
         {isLoading ? (
-          <ActivityIndicator color={buttonTextColor} />
+          <ActivityIndicator
+            color={buttonTextColor}
+            testID="loading-indicator"
+          />
         ) : (
           <S.Content>
             <S.Title color={buttonTextColor}>{title}</S.Title>

@@ -21,8 +21,8 @@ import {
   SelectDropDownItem,
 } from '@/components/elements/SelectDropDown';
 
-import states from '@/utils/states.json';
-import cities from '@/utils/cities.json';
+import states from '@/mock/states.json';
+import cities from '@/mock/cities.json';
 
 import * as S from './styles';
 

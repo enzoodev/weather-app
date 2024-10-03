@@ -8,8 +8,14 @@ export type LoginParams = {
 };
 
 export const login = async (params: LoginParams) => {
-  return HttpServices.post<TAuth>({
+  const response = await HttpServices.get<TAuth>({
     url: '/login',
-    body: params,
   });
+
+  console.log(
+    'We need use a POST request to login but for the mock api runs correctly i do a GET',
+    params,
+  );
+
+  return response;
 };

@@ -1,0 +1,11 @@
+{
+  "login": {
+    "token": "fake-jwt-token",
+    "user": {
+      "name": "testuser",
+      "email": "enzo@turno.com",
+      "photo": "https://github.com/enzoodev.png"
+    }
+  },
+  "locations": []
+}
