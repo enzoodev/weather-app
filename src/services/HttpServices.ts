@@ -11,7 +11,7 @@ export class HttpServices {
   public static registerInterceptTokenManager: RegisterInterceptTokenManager =
     {};
 
-  private static readonly baseUrl = 'http://localhost:3000/';
+  private static readonly baseUrl = 'http://localhost:3333/';
 
   private static request = async <T>({
     url,
