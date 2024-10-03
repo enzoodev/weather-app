@@ -7,7 +7,7 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "server": "json-server --watch ./src/mock/db.json"
+    "server": "json-server -d 500 --watch ./src/mock/db.json --port 3333"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -21,6 +21,7 @@
     "expo-splash-screen": "~0.27.5",
     "expo-status-bar": "~1.12.1",
     "i18next": "^23.15.1",
+    "json-server": "0.17.4",
     "react": "18.2.0",
     "react-hook-form": "^7.53.0",
     "react-i18next": "^15.0.2",
