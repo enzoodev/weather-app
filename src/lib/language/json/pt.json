@@ -32,9 +32,7 @@
   "validation": {
     "email_valid": "Por favor, insira um e-mail válido",
     "email_required": "O e-mail é obrigatório",
-    "email_must_be": "O e-mail deve ser {{email}}",
     "password_required": "A senha é obrigatória",
-    "password_must_be": "A senha deve ser {{password}}",
     "state_required": "O estado é obrigatório.",
     "city_required": "A cidade é obrigatória."
   },

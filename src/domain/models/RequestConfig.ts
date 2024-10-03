@@ -5,5 +5,4 @@ export type TRequestConfig = {
   hasBaseUrl?: boolean;
   method?: HttpMethod;
   body?: Record<string, unknown>;
-  params?: unknown;
 };
