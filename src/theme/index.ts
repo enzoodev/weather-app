@@ -2,7 +2,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 export const theme = {
   colors: {
-    main: '#008C8C',
+    main: '#148585',
     mainLight: '#5FA0A0',
     mainContrast: '#FFFFFF',
     background: '#EDECEE',
