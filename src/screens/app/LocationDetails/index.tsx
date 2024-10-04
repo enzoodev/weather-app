@@ -24,6 +24,7 @@ export const LocationDetails: React.FC = () => {
   const photoUri = location
     ? `https://openweathermap.org/img/wn/${location.iconCode}.png`
     : undefined;
+  const kelvinSymbol = 'K';
 
   const handleGoBack = useCallback(() => {
     navigation.goBack();
@@ -100,23 +101,31 @@ export const LocationDetails: React.FC = () => {
             </S.InfoContainer>
             <S.InfoContainer>
               <S.InfoLabel>{t('location.temperature_label')}:</S.InfoLabel>
-              <S.InfoValue>{location.temperature}</S.InfoValue>
+              <S.InfoValue>
+                {location.temperature} {kelvinSymbol}
+              </S.InfoValue>
             </S.InfoContainer>
             <S.InfoContainer>
               <S.InfoLabel>{t('location.max_temp_label')}:</S.InfoLabel>
-              <S.InfoValue>{location.maxTemp}</S.InfoValue>
+              <S.InfoValue>
+                {location.maxTemp} {kelvinSymbol}
+              </S.InfoValue>
             </S.InfoContainer>
             <S.InfoContainer>
               <S.InfoLabel>{t('location.min_temp_label')}:</S.InfoLabel>
-              <S.InfoValue>{location.minTemp}</S.InfoValue>
+              <S.InfoValue>
+                {location.minTemp} {kelvinSymbol}
+              </S.InfoValue>
             </S.InfoContainer>
             <S.InfoContainer>
               <S.InfoLabel>{t('location.humidity_label')}:</S.InfoLabel>
-              <S.InfoValue>{location.humidity}</S.InfoValue>
+              <S.InfoValue>{location.humidity}%</S.InfoValue>
             </S.InfoContainer>
             <S.InfoContainer>
               <S.InfoLabel>{t('location.feels_like_label')}:</S.InfoLabel>
-              <S.InfoValue>{location.feelsLike}</S.InfoValue>
+              <S.InfoValue>
+                {location.feelsLike} {kelvinSymbol}
+              </S.InfoValue>
             </S.InfoContainer>
           </S.InfoWrapper>
         </S.Content>
