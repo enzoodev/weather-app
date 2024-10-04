@@ -22,9 +22,7 @@ jest.mock('@react-navigation/native', () => {
 });
 
 jest.mock('react-native-toast-notifications', () => ({
-  useToast: jest.fn(() => ({
-    show: jest.fn(),
-  })),
+  useToast: jest.fn(),
 }));
 
 jest.mock('@/features/locations', () => ({
