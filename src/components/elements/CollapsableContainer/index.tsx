@@ -44,7 +44,10 @@ export const CollapsableContainer = memo(({ children, isExpanded }: Props) => {
   });
 
   return (
-    <Animated.View style={[collapsableStyle, { overflow: 'hidden' }]}>
+    <Animated.View
+      style={[collapsableStyle, { overflow: 'hidden' }]}
+      testID="collapsable-view"
+    >
       <S.ContentWrapper onLayout={onLayout}>{children}</S.ContentWrapper>
     </Animated.View>
   );
