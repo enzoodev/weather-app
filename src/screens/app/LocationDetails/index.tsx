@@ -58,6 +58,7 @@ export const LocationDetails: React.FC = () => {
         onBackButtonPress={handleGoBack}
         rightComponent={
           <S.DeleteButton
+            testID="delete-location-button"
             onPress={handleDeleteLocation}
             disabled={!location || location.isLoadingDelete}
           >
