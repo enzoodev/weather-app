@@ -12,7 +12,7 @@ type Props = ViewProps & {
 export const Label = memo(
   ({ title, isDisabled = false, children, ...rest }: Props) => {
     return (
-      <S.Container isDisabled={isDisabled} {...rest}>
+      <S.Container testID="container-test" isDisabled={isDisabled} {...rest}>
         <S.Title>{title}</S.Title>
         {children}
       </S.Container>
