@@ -19,7 +19,7 @@ export const LocationItem = memo(({ item, onPress }: Props) => {
   const kelvinSymbol = 'K';
 
   return (
-    <S.Container onPress={onPress}>
+    <S.Container testID="location-item" onPress={onPress}>
       <S.ContentWrapper>
         <S.Icon source={{ uri: photoUri }} resizeMode="contain" />
         <S.Content>
