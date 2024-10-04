@@ -110,7 +110,11 @@ export const SelectDropDown = memo(
     return (
       <S.FullWrapper {...rest}>
         <S.Container hasFormError={hasFormError}>
-          <S.Header isOpen={isOpen} onPress={toggleOpen}>
+          <S.Header
+            isOpen={isOpen}
+            onPress={toggleOpen}
+            disabled={items.length === 0}
+          >
             {isShowPlaceholder ? (
               <S.Placeholder>
                 {placeholder || t('selectDropDown.placeholder')}
