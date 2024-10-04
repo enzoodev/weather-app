@@ -1,10 +1,8 @@
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react-hooks';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { useAppSelector } from '@/hooks/useAppSelector';
-import { useAuth } from './index'; // Adjust the import path accordingly
-import { loginAction, logoutAction } from './actions';
+import { useAuth } from './index';
 
-// Mock the hooks
 jest.mock('@/hooks/useAppDispatch');
 jest.mock('@/hooks/useAppSelector');
 
