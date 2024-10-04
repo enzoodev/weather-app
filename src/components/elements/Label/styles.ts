@@ -5,10 +5,9 @@ type ContainerTypeStyleProps = {
 };
 
 export const Container = styled.View<ContainerTypeStyleProps>`
-  flex: 1;
   width: 100%;
   gap: ${({ theme }) => theme.layout[1]}px;
-  opacity: ${({ isDisabled }) => (isDisabled ? 0.4 : 1)};
+  opacity: ${({ isDisabled }) => (isDisabled ? 0.5 : 1)};
 `;
 
 export const Title = styled.Text`

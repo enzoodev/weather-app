@@ -16,7 +16,7 @@ type TitleTypeStyleProps = {
 export const Container = styled.View<ContainerTypeStyleProps>`
   flex-direction: row;
   align-items: center;
-  ${({ theme, hasBackButton, hasRightComponent }) => {
+  ${({ hasBackButton, hasRightComponent }) => {
     let justifyContent;
 
     switch (true) {
@@ -34,7 +34,6 @@ export const Container = styled.View<ContainerTypeStyleProps>`
     }
 
     return css`
-      padding-top: ${theme.layout[4]}px;
       justify-content: ${justifyContent};
     `;
   }};
@@ -49,11 +48,10 @@ export const Title = styled.Text<TitleTypeStyleProps>`
 `;
 
 export const GoBackButtonWrapper = styled.TouchableOpacity<GoBackButtonTypeStyleProps>`
-  ${({ theme, hasRightComponent }) =>
+  ${({ hasRightComponent }) =>
     !hasRightComponent &&
     css`
       position: absolute;
-      left: ${theme.layout[4]}px;
-      top: ${theme.layout[4]}px;
+      left: 0;
     `};
 `;

@@ -48,7 +48,6 @@ export const Input = memo(
             selectionColor={theme.colors.placeholder}
             onFocus={handleFocusInput}
             onBlur={handleBlurInput}
-            autoCorrect={false}
             editable={!isDisabled}
             {...rest}
           />

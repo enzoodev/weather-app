@@ -30,7 +30,6 @@ export const Container = styled.View<ContainerTypeStyleProps>`
 `;
 
 export const Header = styled.TouchableOpacity<HeaderTypeStyleProps>`
-  flex: 1;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
