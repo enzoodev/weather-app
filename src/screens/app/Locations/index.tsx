@@ -21,7 +21,7 @@ export const Locations: React.FC = () => {
   const { data, isLoading, isRefetching, fetchLocations, refetchLocations } =
     useLocations();
   const { t } = useTranslation();
-  const hasMaximunLocations = data.length === 3;
+  const hasMaximunLocations = data?.length === 3;
 
   const handleCreateLocation = useCallback(() => {
     navigation.navigate('CreateLocation');
@@ -34,7 +34,7 @@ export const Locations: React.FC = () => {
     [navigation],
   );
 
-  const loadingData = Array.from({ length: 6 }).map((_, index) => ({
+  const loadingData = Array.from({ length: 3 }).map((_, index) => ({
     id: index,
   }));
 
@@ -69,6 +69,7 @@ export const Locations: React.FC = () => {
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ padding: theme.layout[4] }}
         refreshControl={
           <RefreshControl
             tintColor={theme.colors.textSecondary}

@@ -28,7 +28,7 @@ export const Header = memo(
           >
             <IconChevronLeft
               stroke={1.25}
-              size={theme.iconSizes.sm}
+              size={theme.iconSizes.md}
               color={theme.colors.textSecondary}
             />
           </S.GoBackButtonWrapper>

@@ -19,6 +19,7 @@ export const Icon = styled.Image`
     width: ${theme.iconSizes.xxxl}px;
     height: ${theme.iconSizes.xxxl}px;
     border-radius: ${theme.border.radius.full}px;
+    background-color: ${theme.colors.main};
   `}
 `;
 
@@ -31,6 +32,7 @@ export const Title = styled.Text`
 `;
 
 export const ContentWrapper = styled.View`
+  flex: 1;
   flex-direction: row;
   ${({ theme }) => css`
     gap: ${theme.layout[3]}px;
@@ -38,16 +40,15 @@ export const ContentWrapper = styled.View`
 `;
 
 export const Content = styled.View`
+  flex: 1;
   ${({ theme }) => css`
     gap: ${theme.layout[2]}px;
   `};
 `;
 
 export const InfoContainer = styled.View`
-  flex-direction: row;
-  align-items: center;
   ${({ theme }) => css`
-    gap: ${theme.layout[12]}px;
+    gap: ${theme.layout[2]}px;
   `};
 `;
 

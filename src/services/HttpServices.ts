@@ -1,6 +1,7 @@
 import { TRequestConfig } from '@/domain/models/RequestConfig';
 
 import { HttpMethod } from '@/enums/HttpMethod';
+import { buildUrl } from '@/utils/buildUrl';
 
 type RegisterInterceptTokenManager = {
   token?: string;
@@ -18,18 +19,24 @@ export class HttpServices {
     hasBaseUrl = true,
     method = HttpMethod.GET,
     body,
+    params,
   }: TRequestConfig): Promise<T> => {
-    const fullUrl = new URL(url, hasBaseUrl ? this.baseUrl : undefined);
-
+    const fullUrl = buildUrl({
+      baseUrl: hasBaseUrl ? this.baseUrl : undefined,
+      url,
+      params,
+    });
+    console.log(fullUrl);
     const response = await fetch(fullUrl, {
       method,
       body: body ? JSON.stringify(body) : undefined,
       headers: {
-        Authorization: `Bearer ${this.registerInterceptTokenManager.token}`,
+        Accept: 'application/json',
         'Content-Type': 'application/json',
+        // Authorization: `Bearer ${this.registerInterceptTokenManager.token}`,
       },
     });
-
+    console.log(response);
     if (!response.ok) {
       if (
         response.status === 401 &&
@@ -39,6 +46,7 @@ export class HttpServices {
       }
 
       const error = await response.json();
+      console.log(error);
       throw new Error(error.message);
     }
 

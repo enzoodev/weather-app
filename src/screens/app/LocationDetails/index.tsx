@@ -46,7 +46,12 @@ export const LocationDetails: React.FC = () => {
   }, [deleteLocation, handleGoBack, id, t, toast]);
 
   return (
-    <S.Container showsVerticalScrollIndicator={false}>
+    <S.Container
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{
+        padding: theme.layout[4],
+      }}
+    >
       <Header
         title={t('location.location_details_title')}
         onBackButtonPress={handleGoBack}
@@ -60,7 +65,7 @@ export const LocationDetails: React.FC = () => {
             ) : (
               <IconTrash
                 stroke={1.5}
-                size={theme.iconSizes.lg}
+                size={theme.iconSizes.md}
                 color={theme.colors.textSecondary}
               />
             )}
