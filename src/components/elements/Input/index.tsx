@@ -42,8 +42,13 @@ export const Input = memo(
 
     return (
       <S.Container>
-        <S.Content hasFormError={!!formError} borderColor={borderColor}>
+        <S.Content
+          testID="input-wrapper-test"
+          hasFormError={!!formError}
+          borderColor={borderColor}
+        >
           <S.Input
+            testID="input-test"
             placeholderTextColor={theme.colors.placeholder}
             selectionColor={theme.colors.placeholder}
             onFocus={handleFocusInput}
