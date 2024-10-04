@@ -10,7 +10,7 @@ export const AppStatusBar = () => {
   const insets = useSafeAreaInsets();
 
   return (
-    <S.Container paddingTop={insets.top}>
+    <S.Container paddingTop={insets.top} testID="container-test">
       <StatusBar
         translucent
         style="light"
