@@ -48,7 +48,11 @@ export const PasswordInput = memo(
 
     return (
       <S.Container {...viewProps}>
-        <S.Content hasFormError={!!formError} borderColor={borderColor}>
+        <S.Content
+          testID="input-wrapper-test"
+          hasFormError={!!formError}
+          borderColor={borderColor}
+        >
           <S.Input
             autoCapitalize="none"
             placeholderTextColor={theme.colors.placeholder}

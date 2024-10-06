@@ -7,5 +7,32 @@
       "photo": "https://github.com/enzoodev.png"
     }
   },
-  "locations": []
+  "locations": [
+    {
+      "id": 3662155,
+      "city": "Sena Madureira",
+      "country": "BR",
+      "weatherCondition": "Clouds",
+      "description": "overcast clouds",
+      "temperature": 297.28,
+      "maxTemp": 297.28,
+      "minTemp": 297.28,
+      "humidity": 92,
+      "feelsLike": 298.15,
+      "iconCode": "04d"
+    },
+    {
+      "id": 3471872,
+      "city": "Aracaju",
+      "country": "BR",
+      "weatherCondition": "Clouds",
+      "description": "scattered clouds",
+      "temperature": 302.12,
+      "maxTemp": 302.12,
+      "minTemp": 302.12,
+      "humidity": 61,
+      "feelsLike": 304.29,
+      "iconCode": "03d"
+    }
+  ]
 }

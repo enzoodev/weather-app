@@ -2,14 +2,15 @@
 import { memo, useCallback, useMemo, useState } from 'react';
 import { ViewProps } from 'react-native';
 import { useTheme } from 'styled-components/native';
+import { useTranslation } from 'react-i18next';
 import {
   IconCheck,
   IconChevronDown,
   IconChevronUp,
 } from 'tabler-react-native/icons';
-import { useTranslation } from 'react-i18next';
 
 import { generateId } from '@/utils/generateId';
+
 import { CollapsableContainer } from '@/components/elements/CollapsableContainer';
 
 import * as S from './styles';
@@ -110,7 +111,11 @@ export const SelectDropDown = memo(
     return (
       <S.FullWrapper {...rest}>
         <S.Container hasFormError={hasFormError}>
-          <S.Header isOpen={isOpen} onPress={toggleOpen}>
+          <S.Header
+            isOpen={isOpen}
+            onPress={toggleOpen}
+            disabled={items.length === 0}
+          >
             {isShowPlaceholder ? (
               <S.Placeholder>
                 {placeholder || t('selectDropDown.placeholder')}

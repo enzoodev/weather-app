@@ -25,10 +25,11 @@ export const Header = memo(
           <S.GoBackButtonWrapper
             hasRightComponent={hasRightComponent}
             onPress={onBackButtonPress}
+            testID="go-back-button"
           >
             <IconChevronLeft
               stroke={1.25}
-              size={theme.iconSizes.sm}
+              size={theme.iconSizes.md}
               color={theme.colors.textSecondary}
             />
           </S.GoBackButtonWrapper>

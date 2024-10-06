@@ -19,10 +19,10 @@ export const CollapsableContainer = memo(({ children, isExpanded }: Props) => {
 
   const onLayout = useCallback(
     (event: LayoutChangeEvent) => {
-      const onLayoutHeight = event.nativeEvent.layout.height;
+      const layoutHeight = event.nativeEvent.layout.height;
 
-      if (onLayoutHeight > 0 && height !== onLayoutHeight) {
-        setHeight(onLayoutHeight);
+      if (layoutHeight > 0 && height !== layoutHeight) {
+        setHeight(layoutHeight);
       }
     },
     [height],
@@ -44,7 +44,10 @@ export const CollapsableContainer = memo(({ children, isExpanded }: Props) => {
   });
 
   return (
-    <Animated.View style={[collapsableStyle, { overflow: 'hidden', flex: 1 }]}>
+    <Animated.View
+      style={[collapsableStyle, { overflow: 'hidden' }]}
+      testID="collapsable-view"
+    >
       <S.ContentWrapper onLayout={onLayout}>{children}</S.ContentWrapper>
     </Animated.View>
   );

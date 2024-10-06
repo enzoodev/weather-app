@@ -1,29 +1,28 @@
+import { Dimensions } from 'react-native';
 import styled, { css } from 'styled-components/native';
 
+const { height } = Dimensions.get('window');
+
 export const Container = styled.ScrollView`
-  flex: 1;
   ${({ theme }) => css`
-    padding: ${theme.layout[4]};
     background-color: ${theme.colors.background};
   `}
 `;
 
 export const LoadingContainer = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
+  margin-top: ${height / 3}px;
 `;
 
 export const Content = styled.View`
   ${({ theme }) => css`
-    gap: ${theme.layout[4]};
+    gap: ${theme.layout[4]}px;
     margin-top: ${theme.layout[4]}px;
   `}
 `;
 
 export const InfoWrapper = styled.View`
   ${({ theme }) => css`
-    gap: ${theme.layout[3]};
+    gap: ${theme.layout[3]}px;
   `}
 `;
 
@@ -39,10 +38,12 @@ export const DeleteButton = styled.TouchableOpacity`
 `;
 
 export const Icon = styled.Image`
+  align-self: center;
   ${({ theme }) => css`
-    width: ${theme.layout[72]}px;
-    height: ${theme.layout[72]}px;
+    width: ${theme.layout[32]}px;
+    height: ${theme.layout[32]}px;
     border-radius: ${theme.border.radius.full}px;
+    background-color: ${theme.colors.main};
   `}
 `;
 

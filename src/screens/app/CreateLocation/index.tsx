@@ -117,7 +117,10 @@ export const CreateLocation: React.FC = () => {
             formError={errors.state?.message}
           />
         </Label>
-        <Label title={t('location.city_label')}>
+        <Label
+          title={t('location.city_label')}
+          isDisabled={state.trim().length === 0}
+        >
           <SelectDropDown
             placeholder={t('location.city_label')}
             value={city}

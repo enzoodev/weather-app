@@ -26,8 +26,6 @@ export const AppTabsRoutes = () => {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarHideOnKeyboard: true,
-        tabBarActiveTintColor: theme.colors.main,
-        tabBarInactiveTintColor: theme.colors.main,
         tabBarStyle: {
           backgroundColor: theme.colors.bottomTabsBackgroundColor,
           borderTopColor: theme.colors.bottomTabsBorderColor,
@@ -43,8 +41,12 @@ export const AppTabsRoutes = () => {
         name="LocationsStackRoutes"
         component={LocationsStackRoutes}
         options={{
-          tabBarIcon: ({ color }) => (
-            <IconHome stroke={1.5} color={color} size={theme.iconSizes.md} />
+          tabBarIcon: () => (
+            <IconHome
+              stroke={1.5}
+              color={theme.colors.main}
+              size={theme.iconSizes.md}
+            />
           ),
         }}
       />
@@ -52,14 +54,14 @@ export const AppTabsRoutes = () => {
         name="Logout"
         component={React.Fragment}
         options={{
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: () => (
             <TouchableOpacity onPress={logout} disabled={isLoadingLogout}>
               {isLoadingLogout ? (
-                <ActivityIndicator size="small" color={theme.colors.main} />
+                <ActivityIndicator color={theme.colors.textTertiary} />
               ) : (
                 <IconLogout
                   stroke={1.5}
-                  color={color}
+                  color={theme.colors.textTertiary}
                   size={theme.iconSizes.md}
                 />
               )}
