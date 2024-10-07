@@ -13,7 +13,7 @@ import { generateId } from '@/utils/generateId';
 
 import { CollapsableContainer } from '@/components/elements/CollapsableContainer';
 
-import * as S from './styles';
+import * as Styled from './styles';
 
 export type SelectDropDownItem = {
   label: string;
@@ -75,7 +75,9 @@ export const SelectDropDown = memo(
     const renderItems = useCallback(() => {
       if (filteredItems.length === 0) {
         return (
-          <S.ListEmptyTitle>{t('selectDropDown.list_empty')}</S.ListEmptyTitle>
+          <Styled.ListEmptyTitle>
+            {t('selectDropDown.list_empty')}
+          </Styled.ListEmptyTitle>
         );
       }
 
@@ -83,12 +85,14 @@ export const SelectDropDown = memo(
         const isSelected = item.value === value;
 
         return (
-          <S.Item
+          <Styled.Item
             key={generateId()}
             isSelected={isSelected}
             onPress={() => handleChangeValue(item)}
           >
-            <S.ItemTitle isSelected={isSelected}>{item.label}</S.ItemTitle>
+            <Styled.ItemTitle isSelected={isSelected}>
+              {item.label}
+            </Styled.ItemTitle>
             {isSelected && (
               <IconCheck
                 stroke={1.5}
@@ -96,7 +100,7 @@ export const SelectDropDown = memo(
                 color={theme.colors.textPrimary}
               />
             )}
-          </S.Item>
+          </Styled.Item>
         );
       });
     }, [
@@ -109,19 +113,19 @@ export const SelectDropDown = memo(
     ]);
 
     return (
-      <S.FullWrapper {...rest}>
-        <S.Container hasFormError={hasFormError}>
-          <S.Header
+      <Styled.FullWrapper {...rest}>
+        <Styled.Container hasFormError={hasFormError}>
+          <Styled.Header
             isOpen={isOpen}
             onPress={toggleOpen}
             disabled={items.length === 0}
           >
             {isShowPlaceholder ? (
-              <S.Placeholder>
+              <Styled.Placeholder>
                 {placeholder || t('selectDropDown.placeholder')}
-              </S.Placeholder>
+              </Styled.Placeholder>
             ) : (
-              <S.Title>{selectedItemLabel}</S.Title>
+              <Styled.Title>{selectedItemLabel}</Styled.Title>
             )}
             {isOpen ? (
               <IconChevronUp
@@ -136,9 +140,9 @@ export const SelectDropDown = memo(
                 color={theme.colors.textSecondary}
               />
             )}
-          </S.Header>
+          </Styled.Header>
           <CollapsableContainer isExpanded={isOpen}>
-            <S.Content
+            <Styled.Content
               showsVerticalScrollIndicator={false}
               contentContainerStyle={{
                 paddingHorizontal: theme.layout[4],
@@ -147,7 +151,7 @@ export const SelectDropDown = memo(
               }}
               nestedScrollEnabled
             >
-              <S.SearchInput
+              <Styled.SearchInput
                 placeholderTextColor={theme.colors.placeholder}
                 selectionColor={theme.colors.placeholder}
                 autoCorrect={false}
@@ -157,11 +161,11 @@ export const SelectDropDown = memo(
                 onChangeText={setSearchText}
               />
               {renderItems()}
-            </S.Content>
+            </Styled.Content>
           </CollapsableContainer>
-        </S.Container>
-        {hasFormError && <S.FormError>{formError}</S.FormError>}
-      </S.FullWrapper>
+        </Styled.Container>
+        {hasFormError && <Styled.FormError>{formError}</Styled.FormError>}
+      </Styled.FullWrapper>
     );
   },
 );

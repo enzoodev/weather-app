@@ -10,7 +10,7 @@ import {
   withSequence,
 } from 'react-native-reanimated';
 
-import * as S from './styles';
+import * as Styled from './styles';
 
 export const Skeleton = memo(({ style, ...rest }: ViewProps) => {
   const boxOpacity = useSharedValue(1);
@@ -38,5 +38,5 @@ export const Skeleton = memo(({ style, ...rest }: ViewProps) => {
     };
   });
 
-  return <S.Container style={[boxStyle, style]} {...rest} />;
+  return <Styled.Container style={[boxStyle, style]} {...rest} />;
 });

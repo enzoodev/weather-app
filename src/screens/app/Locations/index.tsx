@@ -13,7 +13,7 @@ import { Header } from '@/components/elements/Header';
 import { LocationItem } from '@/components/modules/LocationItem';
 import { LocationSkeletonItem } from '@/components/modules/LocationSkeletonItem';
 
-import * as S from './styles';
+import * as Styled from './styles';
 
 export const Locations: React.FC = () => {
   const theme = useTheme();
@@ -63,7 +63,7 @@ export const Locations: React.FC = () => {
   }, [fetchLocations]);
 
   return (
-    <S.Container>
+    <Styled.Container>
       <FlatList
         data={flatListData as []}
         renderItem={renderItem}
@@ -82,28 +82,30 @@ export const Locations: React.FC = () => {
             title={t('location.title')}
             rightComponent={
               !hasMaximunLocations && (
-                <S.AddButton onPress={handleCreateLocation}>
+                <Styled.AddButton onPress={handleCreateLocation}>
                   <IconPlus
                     stroke={1.5}
                     size={theme.iconSizes.lg}
                     color={theme.colors.mainContrast}
                   />
-                </S.AddButton>
+                </Styled.AddButton>
               )
             }
           />
         }
         ListEmptyComponent={
-          <S.ListEmptyCard>
+          <Styled.ListEmptyCard>
             <IconMapOff
               stroke={1.5}
               size={theme.iconSizes.xl}
               color={theme.colors.textSecondary}
             />
-            <S.ListEmptyTitle>{t('location.empty_location')}</S.ListEmptyTitle>
-          </S.ListEmptyCard>
+            <Styled.ListEmptyTitle>
+              {t('location.empty_location')}
+            </Styled.ListEmptyTitle>
+          </Styled.ListEmptyCard>
         }
       />
-    </S.Container>
+    </Styled.Container>
   );
 };

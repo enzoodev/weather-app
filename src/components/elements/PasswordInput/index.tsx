@@ -3,7 +3,7 @@ import { TextInputProps, ViewProps, TouchableOpacity } from 'react-native';
 import { useTheme } from 'styled-components/native';
 import { IconEye, IconEyeOff } from 'tabler-react-native/icons';
 
-import * as S from './styles';
+import * as Styled from './styles';
 
 type Props = TextInputProps & {
   viewProps?: ViewProps;
@@ -47,13 +47,13 @@ export const PasswordInput = memo(
     }, []);
 
     return (
-      <S.Container {...viewProps}>
-        <S.Content
+      <Styled.Container {...viewProps}>
+        <Styled.Content
           testID="input-wrapper-test"
           hasFormError={!!formError}
           borderColor={borderColor}
         >
-          <S.Input
+          <Styled.Input
             autoCapitalize="none"
             placeholderTextColor={theme.colors.placeholder}
             selectionColor={theme.colors.placeholder}
@@ -78,9 +78,9 @@ export const PasswordInput = memo(
               />
             )}
           </TouchableOpacity>
-        </S.Content>
-        {!!formError && <S.FormError>{formError}</S.FormError>}
-      </S.Container>
+        </Styled.Content>
+        {!!formError && <Styled.FormError>{formError}</Styled.FormError>}
+      </Styled.Container>
     );
   },
 );

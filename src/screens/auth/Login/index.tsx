@@ -19,7 +19,7 @@ import { Button } from '@/components/elements/Button';
 import { PasswordInput } from '@/components/elements/PasswordInput';
 import { AnimatedKeyboardWrapper } from '@/components/elements/AnimatedKeyboardWrapper';
 
-import * as S from './styles';
+import * as Styled from './styles';
 
 export const Login = () => {
   const theme = useTheme();
@@ -56,7 +56,7 @@ export const Login = () => {
   );
 
   return (
-    <S.Container>
+    <Styled.Container>
       <ScrollView
         contentContainerStyle={{
           paddingTop: dimensions.height * 0.15,
@@ -64,7 +64,7 @@ export const Login = () => {
         }}
       >
         <AnimatedKeyboardWrapper>
-          <S.Content>
+          <Styled.Content>
             <Image
               source={Logo}
               style={{
@@ -72,8 +72,8 @@ export const Login = () => {
                 width: theme.layout[40],
               }}
             />
-            <S.FormWrapper>
-              <S.Label>{t('login.access_account')}</S.Label>
+            <Styled.FormWrapper>
+              <Styled.Label>{t('login.access_account')}</Styled.Label>
               <Controller
                 control={control}
                 name="email"
@@ -106,15 +106,15 @@ export const Login = () => {
                   </Label>
                 )}
               />
-            </S.FormWrapper>
+            </Styled.FormWrapper>
             <Button
               title={t('login.enter')}
               onPress={handleSubmit(onSubmit)}
               isLoading={isLoadingLogin}
             />
-          </S.Content>
+          </Styled.Content>
         </AnimatedKeyboardWrapper>
       </ScrollView>
-    </S.Container>
+    </Styled.Container>
   );
 };

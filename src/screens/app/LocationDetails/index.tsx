@@ -10,7 +10,7 @@ import { useLocations } from '@/features/locations';
 
 import { Header } from '@/components/elements/Header';
 
-import * as S from './styles';
+import * as Styled from './styles';
 
 export const LocationDetails: React.FC = () => {
   const theme = useTheme();
@@ -47,7 +47,7 @@ export const LocationDetails: React.FC = () => {
   }, [deleteLocation, handleGoBack, id, t, toast]);
 
   return (
-    <S.Container
+    <Styled.Container
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{
         padding: theme.layout[4],
@@ -57,7 +57,7 @@ export const LocationDetails: React.FC = () => {
         title={t('location.location_details_title')}
         onBackButtonPress={handleGoBack}
         rightComponent={
-          <S.DeleteButton
+          <Styled.DeleteButton
             testID="delete-location-button"
             onPress={handleDeleteLocation}
             disabled={!location || location.isLoadingDelete}
@@ -71,66 +71,80 @@ export const LocationDetails: React.FC = () => {
                 color={theme.colors.textSecondary}
               />
             )}
-          </S.DeleteButton>
+          </Styled.DeleteButton>
         }
       />
       {!location || location.isLoadingDelete ? (
-        <S.LoadingContainer>
+        <Styled.LoadingContainer>
           <ActivityIndicator color={theme.colors.textSecondary} />
-        </S.LoadingContainer>
+        </Styled.LoadingContainer>
       ) : (
-        <S.Content>
-          <S.Icon source={{ uri: photoUri }} resizeMode="contain" />
-          <S.InfoWrapper>
-            <S.InfoContainer>
-              <S.InfoLabel>{t('location.city_label')}:</S.InfoLabel>
-              <S.InfoValue>{location.city}</S.InfoValue>
-            </S.InfoContainer>
-            <S.InfoContainer>
-              <S.InfoLabel>{t('location.country_label')}:</S.InfoLabel>
-              <S.InfoValue>{location.country}</S.InfoValue>
-            </S.InfoContainer>
-            <S.InfoContainer>
-              <S.InfoLabel>
+        <Styled.Content>
+          <Styled.Icon source={{ uri: photoUri }} resizeMode="contain" />
+          <Styled.InfoWrapper>
+            <Styled.InfoContainer>
+              <Styled.InfoLabel>{t('location.city_label')}:</Styled.InfoLabel>
+              <Styled.InfoValue>{location.city}</Styled.InfoValue>
+            </Styled.InfoContainer>
+            <Styled.InfoContainer>
+              <Styled.InfoLabel>
+                {t('location.country_label')}:
+              </Styled.InfoLabel>
+              <Styled.InfoValue>{location.country}</Styled.InfoValue>
+            </Styled.InfoContainer>
+            <Styled.InfoContainer>
+              <Styled.InfoLabel>
                 {t('location.weather_condition_label')}:
-              </S.InfoLabel>
-              <S.InfoValue>{location.weatherCondition}</S.InfoValue>
-            </S.InfoContainer>
-            <S.InfoContainer>
-              <S.InfoLabel>{t('location.description_label')}:</S.InfoLabel>
-              <S.InfoValue>{location.description}</S.InfoValue>
-            </S.InfoContainer>
-            <S.InfoContainer>
-              <S.InfoLabel>{t('location.temperature_label')}:</S.InfoLabel>
-              <S.InfoValue>
+              </Styled.InfoLabel>
+              <Styled.InfoValue>{location.weatherCondition}</Styled.InfoValue>
+            </Styled.InfoContainer>
+            <Styled.InfoContainer>
+              <Styled.InfoLabel>
+                {t('location.description_label')}:
+              </Styled.InfoLabel>
+              <Styled.InfoValue>{location.description}</Styled.InfoValue>
+            </Styled.InfoContainer>
+            <Styled.InfoContainer>
+              <Styled.InfoLabel>
+                {t('location.temperature_label')}:
+              </Styled.InfoLabel>
+              <Styled.InfoValue>
                 {location.temperature} {kelvinSymbol}
-              </S.InfoValue>
-            </S.InfoContainer>
-            <S.InfoContainer>
-              <S.InfoLabel>{t('location.max_temp_label')}:</S.InfoLabel>
-              <S.InfoValue>
+              </Styled.InfoValue>
+            </Styled.InfoContainer>
+            <Styled.InfoContainer>
+              <Styled.InfoLabel>
+                {t('location.max_temp_label')}:
+              </Styled.InfoLabel>
+              <Styled.InfoValue>
                 {location.maxTemp} {kelvinSymbol}
-              </S.InfoValue>
-            </S.InfoContainer>
-            <S.InfoContainer>
-              <S.InfoLabel>{t('location.min_temp_label')}:</S.InfoLabel>
-              <S.InfoValue>
+              </Styled.InfoValue>
+            </Styled.InfoContainer>
+            <Styled.InfoContainer>
+              <Styled.InfoLabel>
+                {t('location.min_temp_label')}:
+              </Styled.InfoLabel>
+              <Styled.InfoValue>
                 {location.minTemp} {kelvinSymbol}
-              </S.InfoValue>
-            </S.InfoContainer>
-            <S.InfoContainer>
-              <S.InfoLabel>{t('location.humidity_label')}:</S.InfoLabel>
-              <S.InfoValue>{location.humidity}%</S.InfoValue>
-            </S.InfoContainer>
-            <S.InfoContainer>
-              <S.InfoLabel>{t('location.feels_like_label')}:</S.InfoLabel>
-              <S.InfoValue>
+              </Styled.InfoValue>
+            </Styled.InfoContainer>
+            <Styled.InfoContainer>
+              <Styled.InfoLabel>
+                {t('location.humidity_label')}:
+              </Styled.InfoLabel>
+              <Styled.InfoValue>{location.humidity}%</Styled.InfoValue>
+            </Styled.InfoContainer>
+            <Styled.InfoContainer>
+              <Styled.InfoLabel>
+                {t('location.feels_like_label')}:
+              </Styled.InfoLabel>
+              <Styled.InfoValue>
                 {location.feelsLike} {kelvinSymbol}
-              </S.InfoValue>
-            </S.InfoContainer>
-          </S.InfoWrapper>
-        </S.Content>
+              </Styled.InfoValue>
+            </Styled.InfoContainer>
+          </Styled.InfoWrapper>
+        </Styled.Content>
       )}
-    </S.Container>
+    </Styled.Container>
   );
 };

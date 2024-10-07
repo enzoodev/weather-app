@@ -6,7 +6,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-import * as S from './styles';
+import * as Styled from './styles';
 
 type Props = {
   children: ReactNode;
@@ -48,7 +48,9 @@ export const CollapsableContainer = memo(({ children, isExpanded }: Props) => {
       style={[collapsableStyle, { overflow: 'hidden' }]}
       testID="collapsable-view"
     >
-      <S.ContentWrapper onLayout={onLayout}>{children}</S.ContentWrapper>
+      <Styled.ContentWrapper onLayout={onLayout}>
+        {children}
+      </Styled.ContentWrapper>
     </Animated.View>
   );
 });
