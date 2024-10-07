@@ -126,3 +126,5 @@ npm run android
 ## 📝 Observations
 
 The original testing requirements specified the use of MirageJS for mocking the API. However, MirageJS caused issues when running the app on both Android and iOS platforms. As a result, I opted to use json-server for API mocking to streamline the development process without compromising functionality.
+
+**Authentication (Mock)**: The application implements mock authentication, allowing users to log in with any valid email and any password. This is intended for testing purposes only.
