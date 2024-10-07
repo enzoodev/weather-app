@@ -34,7 +34,7 @@ This is the repository for the Weather application.
 - **Dynamic Routing**: Implement React Navigation to create a smooth and intuitive navigation experience across the app’s screens.
 - **Form Validation**: Combine React Hook Form with Yup for robust form validation, ensuring that user inputs are properly validated, enhancing user experience and data integrity.
 - **Persistent Storage**: Store user preferences and application data locally using React Native MMKV for quick access and offline support.
-- **Localization Support**: Implement i18next for multilingual support, making the app accessible to a wider audience.
+- **Multilingual Support**: Implement i18next to provide support for multiple languages, automatically selecting the language based on the user's location, making the app more accessible to a global audience.
 - **Animation Effects**: Leverage React Native Reanimated for smooth transitions and animations, enhancing the overall user interface.
 - **Unit Testing**: Ensure code quality with unit tests using Jest and React Native Testing Library, verifying component functionality and behavior.
 
