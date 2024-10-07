@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useToast } from 'react-native-toast-notifications';
@@ -7,6 +7,8 @@ import { useTranslation } from 'react-i18next';
 import { IconTrash } from 'tabler-react-native/icons';
 
 import { useLocations } from '@/features/locations';
+
+import { generateId } from '@/utils/generateId';
 
 import { Header } from '@/components/elements/Header';
 
@@ -25,6 +27,48 @@ export const LocationDetails: React.FC = () => {
     ? `https://openweathermap.org/img/wn/${location.iconCode}.png`
     : undefined;
   const kelvinSymbol = 'K';
+
+  const info = useMemo(
+    () => [
+      {
+        label: t('location.city_label'),
+        value: location?.city,
+      },
+      {
+        label: t('location.country_label'),
+        value: location?.country,
+      },
+      {
+        label: t('location.weather_condition_label'),
+        value: location?.weatherCondition,
+      },
+      {
+        label: t('location.description_label'),
+        value: location?.description,
+      },
+      {
+        label: t('location.temperature_label'),
+        value: `${location?.temperature} ${kelvinSymbol}`,
+      },
+      {
+        label: t('location.max_temp_label'),
+        value: `${location?.maxTemp} ${kelvinSymbol}`,
+      },
+      {
+        label: t('location.min_temp_label'),
+        value: `${location?.minTemp} ${kelvinSymbol}`,
+      },
+      {
+        label: t('location.humidity_label'),
+        value: `${location?.humidity}%`,
+      },
+      {
+        label: t('location.feels_like_label'),
+        value: `${location?.feelsLike} ${kelvinSymbol}`,
+      },
+    ],
+    [location, t],
+  );
 
   const handleGoBack = useCallback(() => {
     navigation.goBack();
@@ -82,66 +126,12 @@ export const LocationDetails: React.FC = () => {
         <Styled.Content>
           <Styled.Icon source={{ uri: photoUri }} resizeMode="contain" />
           <Styled.InfoWrapper>
-            <Styled.InfoContainer>
-              <Styled.InfoLabel>{t('location.city_label')}:</Styled.InfoLabel>
-              <Styled.InfoValue>{location.city}</Styled.InfoValue>
-            </Styled.InfoContainer>
-            <Styled.InfoContainer>
-              <Styled.InfoLabel>
-                {t('location.country_label')}:
-              </Styled.InfoLabel>
-              <Styled.InfoValue>{location.country}</Styled.InfoValue>
-            </Styled.InfoContainer>
-            <Styled.InfoContainer>
-              <Styled.InfoLabel>
-                {t('location.weather_condition_label')}:
-              </Styled.InfoLabel>
-              <Styled.InfoValue>{location.weatherCondition}</Styled.InfoValue>
-            </Styled.InfoContainer>
-            <Styled.InfoContainer>
-              <Styled.InfoLabel>
-                {t('location.description_label')}:
-              </Styled.InfoLabel>
-              <Styled.InfoValue>{location.description}</Styled.InfoValue>
-            </Styled.InfoContainer>
-            <Styled.InfoContainer>
-              <Styled.InfoLabel>
-                {t('location.temperature_label')}:
-              </Styled.InfoLabel>
-              <Styled.InfoValue>
-                {location.temperature} {kelvinSymbol}
-              </Styled.InfoValue>
-            </Styled.InfoContainer>
-            <Styled.InfoContainer>
-              <Styled.InfoLabel>
-                {t('location.max_temp_label')}:
-              </Styled.InfoLabel>
-              <Styled.InfoValue>
-                {location.maxTemp} {kelvinSymbol}
-              </Styled.InfoValue>
-            </Styled.InfoContainer>
-            <Styled.InfoContainer>
-              <Styled.InfoLabel>
-                {t('location.min_temp_label')}:
-              </Styled.InfoLabel>
-              <Styled.InfoValue>
-                {location.minTemp} {kelvinSymbol}
-              </Styled.InfoValue>
-            </Styled.InfoContainer>
-            <Styled.InfoContainer>
-              <Styled.InfoLabel>
-                {t('location.humidity_label')}:
-              </Styled.InfoLabel>
-              <Styled.InfoValue>{location.humidity}%</Styled.InfoValue>
-            </Styled.InfoContainer>
-            <Styled.InfoContainer>
-              <Styled.InfoLabel>
-                {t('location.feels_like_label')}:
-              </Styled.InfoLabel>
-              <Styled.InfoValue>
-                {location.feelsLike} {kelvinSymbol}
-              </Styled.InfoValue>
-            </Styled.InfoContainer>
+            {info.map(item => (
+              <Styled.InfoContainer key={generateId()}>
+                <Styled.InfoLabel>{item.label}:</Styled.InfoLabel>
+                <Styled.InfoValue>{item.value}</Styled.InfoValue>
+              </Styled.InfoContainer>
+            ))}
           </Styled.InfoWrapper>
         </Styled.Content>
       )}
