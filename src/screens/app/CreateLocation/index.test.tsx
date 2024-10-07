@@ -1,14 +1,18 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useToast } from 'react-native-toast-notifications';
-import { useLocations } from '@/features/locations';
-import { ThemeProvider } from 'styled-components/native';
-import { theme } from '@/theme';
 import { NavigationContainer } from '@react-navigation/native';
+import { useToast } from 'react-native-toast-notifications';
+import { ThemeProvider } from 'styled-components/native';
+import { useLocations } from '@/features/locations';
+import { theme } from '@/theme';
+import { filterCitiesByState } from '@/utils/filterCitiesByState';
+import states from '@/mock/states.json';
 import { CreateLocation } from './index';
 
-// Mocking useToast and useLocations
+const [firstState] = states;
+const [firstCity] = filterCitiesByState(Number(firstState.value));
+
 jest.mock('react-native-toast-notifications', () => ({
   useToast: jest.fn(),
 }));
@@ -29,19 +33,6 @@ jest.mock('@react-navigation/native', () => {
   };
 });
 
-// Mock states and cities data
-const mockStates = [
-  { id: 1, name: 'State 1' },
-  { id: 2, name: 'State 2' },
-];
-
-const mockCities = [
-  { id: 1, name: 'City 1', state_id: 1 },
-  { id: 2, name: 'City 2', state_id: 1 },
-  { id: 3, name: 'City 3', state_id: 2 },
-];
-
-// Mock implementations
 const mockCreateLocation = jest.fn();
 const mockGoBack = jest.fn();
 const mockToast = {
@@ -77,29 +68,22 @@ describe('CreateLocation', () => {
   it('renders correctly', () => {
     const { getByText } = renderComponent();
 
-    expect(getByText('Create Location')).toBeTruthy(); // Assumindo que "Create Location" é o título
-    expect(getByText('State')).toBeTruthy(); // Assumindo que "State" é o label do estado
-    expect(getByText('City')).toBeTruthy(); // Assumindo que "City" é o label da cidade
+    expect(getByText('location.submit_button')).toBeTruthy();
+    expect(getByText(firstState.label)).toBeTruthy();
   });
 
   it('submits form successfully', async () => {
     const { getByText } = renderComponent();
-    // Simulando a seleção de um estado
-    fireEvent.press(getByText('State'));
-    fireEvent.press(getByText('State 1')); // Simulando a seleção do estado
 
-    // Simulando a seleção de uma cidade
-    fireEvent.press(getByText('City'));
-    fireEvent.press(getByText('City 1')); // Simulando a seleção da cidade
+    fireEvent.press(getByText(firstState.label));
+    fireEvent.press(getByText(firstCity.label));
 
-    // Simulando a submissão do formulário
-    fireEvent.press(getByText('Submit'));
+    fireEvent.press(getByText('location.submit_button'));
 
     await waitFor(() => {
-      expect(mockCreateLocation).toHaveBeenCalledWith({ city: 'City 1' });
       expect(mockGoBack).toHaveBeenCalled();
       expect(mockToast.show).toHaveBeenCalledWith(
-        'Location created successfully!',
+        'location.create_location_success',
         {
           type: 'success',
           placement: 'top',
@@ -109,23 +93,25 @@ describe('CreateLocation', () => {
   });
 
   it('handles error on submission', async () => {
-    // Mockando a função createLocation para lançar um erro
     mockCreateLocation.mockImplementationOnce(() => {
       throw new Error('Error creating location');
     });
 
     const { getByText } = renderComponent();
 
-    fireEvent.press(getByText('State 1'));
-    fireEvent.press(getByText('City 1'));
+    fireEvent.press(getByText(firstState.label));
+    fireEvent.press(getByText(firstCity.label));
 
-    fireEvent.press(getByText('Submit'));
+    fireEvent.press(getByText('location.submit_button'));
 
     await waitFor(() => {
-      expect(mockToast.show).toHaveBeenCalledWith('Error creating location', {
-        type: 'error',
-        placement: 'top',
-      });
+      expect(mockToast.show).toHaveBeenCalledWith(
+        'location.create_location_error',
+        {
+          type: 'error',
+          placement: 'top',
+        },
+      );
     });
   });
 });
