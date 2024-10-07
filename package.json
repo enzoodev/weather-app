@@ -9,7 +9,7 @@
     "web": "expo start --web",
     "test": "jest",
     "test:coverage": "jest --coverage --watchAll",
-    "server": "json-server --delay 500 --watch ./src/mock/db.json --port 3333"
+    "server": "json-server --host 192.168.18.7 --delay 500 --watch ./src/mock/db.json --port 3333"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

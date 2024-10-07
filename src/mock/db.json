@@ -9,19 +9,6 @@
   },
   "locations": [
     {
-      "id": 3662155,
-      "city": "Sena Madureira",
-      "country": "BR",
-      "weatherCondition": "Clouds",
-      "description": "overcast clouds",
-      "temperature": 297.28,
-      "maxTemp": 297.28,
-      "minTemp": 297.28,
-      "humidity": 92,
-      "feelsLike": 298.15,
-      "iconCode": "04d"
-    },
-    {
       "id": 3471872,
       "city": "Aracaju",
       "country": "BR",
@@ -33,6 +20,32 @@
       "humidity": 61,
       "feelsLike": 304.29,
       "iconCode": "03d"
+    },
+    {
+      "id": 3924895,
+      "city": "Acrelândia",
+      "country": "BR",
+      "weatherCondition": "Clouds",
+      "description": "broken clouds",
+      "temperature": 301.93,
+      "maxTemp": 301.93,
+      "minTemp": 301.93,
+      "humidity": 50,
+      "feelsLike": 302.53,
+      "iconCode": "04n"
+    },
+    {
+      "id": 3948613,
+      "city": "Acarí",
+      "country": "PE",
+      "weatherCondition": "Clouds",
+      "description": "broken clouds",
+      "temperature": 290.99,
+      "maxTemp": 290.99,
+      "minTemp": 290.99,
+      "humidity": 83,
+      "feelsLike": 291,
+      "iconCode": "04n"
     }
   ]
 }

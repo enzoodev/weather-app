@@ -12,7 +12,12 @@ export class HttpServices {
   public static registerInterceptTokenManager: RegisterInterceptTokenManager =
     {};
 
-  private static readonly baseUrl = 'http://localhost:3333/';
+  private static readonly address =
+    process.env.EXPO_PUBLIC_PRIVATE_IP ?? 'localhost';
+
+  private static readonly port = process.env.EXPO_PUBLIC_PORT ?? '3333';
+
+  private static readonly baseUrl = `http://${this.address}:${this.port}/`;
 
   private static request = async <T>({
     url,
@@ -26,17 +31,16 @@ export class HttpServices {
       url,
       params,
     });
-    console.log(fullUrl);
+
     const response = await fetch(fullUrl, {
       method,
       body: body ? JSON.stringify(body) : undefined,
       headers: {
-        Accept: 'application/json',
         'Content-Type': 'application/json',
-        // Authorization: `Bearer ${this.registerInterceptTokenManager.token}`,
+        Authorization: `Bearer ${this.registerInterceptTokenManager.token}`,
       },
     });
-    console.log(response);
+
     if (!response.ok) {
       if (
         response.status === 401 &&
@@ -46,7 +50,6 @@ export class HttpServices {
       }
 
       const error = await response.json();
-      console.log(error);
       throw new Error(error.message);
     }
 
