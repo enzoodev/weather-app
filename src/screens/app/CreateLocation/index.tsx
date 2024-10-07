@@ -1,10 +1,11 @@
-/* eslint-disable no-plusplus */
 import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import { useToast } from 'react-native-toast-notifications';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+
+import { filterCitiesByState } from '@/utils/filterCitiesByState';
 
 import { useLocations } from '@/features/locations';
 
@@ -22,7 +23,6 @@ import {
 } from '@/components/elements/SelectDropDown';
 
 import states from '@/mock/states.json';
-import cities from '@/mock/cities.json';
 
 import * as S from './styles';
 
@@ -62,21 +62,7 @@ export const CreateLocation: React.FC = () => {
     [setValue],
   );
 
-  const cityItems = useMemo(() => {
-    const items: SelectDropDownItem[] = [];
-
-    for (let i = 0; i < cities.length; i++) {
-      const city = cities[i];
-      if (city.state_id === Number(state)) {
-        items.push({
-          value: city.name,
-          label: city.name,
-        });
-      }
-    }
-
-    return items;
-  }, [state]);
+  const cityItems = useMemo(() => filterCitiesByState(Number(state)), [state]);
 
   const handleGoBack = useCallback(() => {
     navigation.goBack();
