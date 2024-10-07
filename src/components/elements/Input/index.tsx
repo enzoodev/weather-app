@@ -2,7 +2,7 @@ import { memo, useCallback, useMemo, useState } from 'react';
 import { TextInputProps } from 'react-native';
 import { useTheme } from 'styled-components/native';
 
-import * as S from './styles';
+import * as Styled from './styles';
 
 type Props = TextInputProps & {
   formError?: string;
@@ -41,13 +41,13 @@ export const Input = memo(
     }, []);
 
     return (
-      <S.Container>
-        <S.Content
+      <Styled.Container>
+        <Styled.Content
           testID="input-wrapper-test"
           hasFormError={!!formError}
           borderColor={borderColor}
         >
-          <S.Input
+          <Styled.Input
             testID="input-test"
             placeholderTextColor={theme.colors.placeholder}
             selectionColor={theme.colors.placeholder}
@@ -56,9 +56,9 @@ export const Input = memo(
             editable={!isDisabled}
             {...rest}
           />
-        </S.Content>
-        {!!formError && <S.FormError>{formError}</S.FormError>}
-      </S.Container>
+        </Styled.Content>
+        {!!formError && <Styled.FormError>{formError}</Styled.FormError>}
+      </Styled.Container>
     );
   },
 );

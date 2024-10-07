@@ -24,7 +24,7 @@ import {
 
 import states from '@/mock/states.json';
 
-import * as S from './styles';
+import * as Styled from './styles';
 
 export const CreateLocation: React.FC = () => {
   const toast = useToast();
@@ -88,8 +88,8 @@ export const CreateLocation: React.FC = () => {
   );
 
   return (
-    <S.Container>
-      <S.Content>
+    <Styled.Container>
+      <Styled.Content>
         <Header
           title={t('location.create_location_title')}
           onBackButtonPress={handleGoBack}
@@ -115,12 +115,12 @@ export const CreateLocation: React.FC = () => {
             formError={errors.city?.message}
           />
         </Label>
-      </S.Content>
+      </Styled.Content>
       <Button
         title={t('location.submit_button')}
         onPress={handleSubmit(onSubmit)}
         isLoading={isLoadingRequest}
       />
-    </S.Container>
+    </Styled.Container>
   );
 };

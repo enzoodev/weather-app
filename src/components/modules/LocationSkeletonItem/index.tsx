@@ -1,16 +1,16 @@
 import { memo } from 'react';
 
-import * as S from './styles';
+import * as Styled from './styles';
 
 export const LocationSkeletonItem = memo(() => {
   return (
-    <S.Container testID="location-skeleton-item">
-      <S.Icon testID="skeleton-icon" />
-      <S.Content>
-        <S.Title testID="skeleton-title" />
-        <S.Text testID="skeleton-text-1" />
-        <S.Text testID="skeleton-text-2" />
-      </S.Content>
-    </S.Container>
+    <Styled.Container testID="location-skeleton-item">
+      <Styled.Icon testID="skeleton-icon" />
+      <Styled.Content>
+        <Styled.Title testID="skeleton-title" />
+        <Styled.Text testID="skeleton-text-1" />
+        <Styled.Text testID="skeleton-text-2" />
+      </Styled.Content>
+    </Styled.Container>
   );
 });

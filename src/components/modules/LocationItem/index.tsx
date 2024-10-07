@@ -5,7 +5,7 @@ import { IconChevronRight } from 'tabler-react-native/icons';
 
 import { TLocation } from '@/domain/entities/Location';
 
-import * as S from './styles';
+import * as Styled from './styles';
 
 type Props = {
   item: TLocation;
@@ -19,30 +19,30 @@ export const LocationItem = memo(({ item, onPress }: Props) => {
   const kelvinSymbol = 'K';
 
   return (
-    <S.Container testID="location-item" onPress={onPress}>
-      <S.ContentWrapper>
-        <S.Icon source={{ uri: photoUri }} resizeMode="contain" />
-        <S.Content>
-          <S.Title>{item.city}</S.Title>
-          <S.InfoContainer>
-            <S.InfoContainerRow>
-              <S.InfoLabel>{t('location.description')}:</S.InfoLabel>
-              <S.InfoValue>{item.description}</S.InfoValue>
-            </S.InfoContainerRow>
-            <S.InfoContainerRow>
-              <S.InfoLabel>{t('location.temperature')}:</S.InfoLabel>
-              <S.InfoValue>
+    <Styled.Container testID="location-item" onPress={onPress}>
+      <Styled.ContentWrapper>
+        <Styled.Icon source={{ uri: photoUri }} resizeMode="contain" />
+        <Styled.Content>
+          <Styled.Title>{item.city}</Styled.Title>
+          <Styled.InfoContainer>
+            <Styled.InfoContainerRow>
+              <Styled.InfoLabel>{t('location.description')}:</Styled.InfoLabel>
+              <Styled.InfoValue>{item.description}</Styled.InfoValue>
+            </Styled.InfoContainerRow>
+            <Styled.InfoContainerRow>
+              <Styled.InfoLabel>{t('location.temperature')}:</Styled.InfoLabel>
+              <Styled.InfoValue>
                 {item.temperature} {kelvinSymbol}
-              </S.InfoValue>
-            </S.InfoContainerRow>
-          </S.InfoContainer>
-        </S.Content>
-      </S.ContentWrapper>
+              </Styled.InfoValue>
+            </Styled.InfoContainerRow>
+          </Styled.InfoContainer>
+        </Styled.Content>
+      </Styled.ContentWrapper>
       <IconChevronRight
         stroke={1.5}
         size={theme.iconSizes.md}
         color={theme.colors.textSecondary}
       />
-    </S.Container>
+    </Styled.Container>
   );
 });

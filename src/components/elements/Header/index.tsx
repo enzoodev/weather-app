@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { useTheme } from 'styled-components/native';
 import { IconChevronLeft } from 'tabler-react-native/icons';
 
-import * as S from './styles';
+import * as Styled from './styles';
 
 type Props = {
   title: string;
@@ -17,12 +17,12 @@ export const Header = memo(
     const hasBackButton = !!onBackButtonPress;
 
     return (
-      <S.Container
+      <Styled.Container
         hasBackButton={hasBackButton}
         hasRightComponent={hasRightComponent}
       >
         {hasBackButton && (
-          <S.GoBackButtonWrapper
+          <Styled.GoBackButtonWrapper
             hasRightComponent={hasRightComponent}
             onPress={onBackButtonPress}
             testID="go-back-button"
@@ -32,11 +32,13 @@ export const Header = memo(
               size={theme.iconSizes.md}
               color={theme.colors.textSecondary}
             />
-          </S.GoBackButtonWrapper>
+          </Styled.GoBackButtonWrapper>
         )}
-        {title && <S.Title hasBackButton={hasBackButton}>{title}</S.Title>}
+        {title && (
+          <Styled.Title hasBackButton={hasBackButton}>{title}</Styled.Title>
+        )}
         {rightComponent}
-      </S.Container>
+      </Styled.Container>
     );
   },
 );

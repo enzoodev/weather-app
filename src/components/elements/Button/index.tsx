@@ -4,7 +4,7 @@ import { useTheme } from 'styled-components/native';
 
 import { darkenColor } from '@/utils/darkenColor';
 
-import * as S from './styles';
+import * as Styled from './styles';
 
 type Props = TouchableHighlightProps & {
   title: string;
@@ -32,7 +32,7 @@ export const Button = memo(
     const buttonTextColor = color ?? theme.colors.mainContrast;
 
     return (
-      <S.Container
+      <Styled.Container
         underlayColor={darkenColor(buttonBgColor, 0.2)}
         onPress={onPress}
         bgColor={buttonBgColor}
@@ -47,11 +47,11 @@ export const Button = memo(
             testID="loading-indicator"
           />
         ) : (
-          <S.Content>
-            <S.Title color={buttonTextColor}>{title}</S.Title>
-          </S.Content>
+          <Styled.Content>
+            <Styled.Title color={buttonTextColor}>{title}</Styled.Title>
+          </Styled.Content>
         )}
-      </S.Container>
+      </Styled.Container>
     );
   },
 );

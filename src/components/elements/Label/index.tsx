@@ -1,7 +1,7 @@
 import { ReactNode, memo } from 'react';
 import { ViewProps } from 'react-native';
 
-import * as S from './styles';
+import * as Styled from './styles';
 
 type Props = ViewProps & {
   title: string;
@@ -12,10 +12,14 @@ type Props = ViewProps & {
 export const Label = memo(
   ({ title, isDisabled = false, children, ...rest }: Props) => {
     return (
-      <S.Container testID="container-test" isDisabled={isDisabled} {...rest}>
-        <S.Title>{title}</S.Title>
+      <Styled.Container
+        testID="container-test"
+        isDisabled={isDisabled}
+        {...rest}
+      >
+        <Styled.Title>{title}</Styled.Title>
         {children}
-      </S.Container>
+      </Styled.Container>
     );
   },
 );
