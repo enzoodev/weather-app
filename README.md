@@ -15,17 +15,28 @@ This is the repository for the Weather application.
 
 ## 🛠️ Technologies Used
 
-- **React Native**: A framework for building native apps using React.
-- **Expo**: A framework and platform for universal React applications.
-- **TypeScript**: A superset of JavaScript that adds static typing to the code.
-- **Zustand**: A small, fast, and scalable bearbones state-management solution.
+- **React Native**: A framework for building native apps using React, enabling a rich mobile experience.
+- **Expo**: A framework and platform for universal React applications, streamlining development and deployment.
+- **TypeScript**: A superset of JavaScript that adds static typing, improving code quality and maintainability.
+- **Redux**: A predictable state container for JavaScript apps, facilitating the management of application state across components.
+- **React Navigation**: A library for routing and navigation in React Native apps, enabling seamless transitions between screens.
+- **React Hook Form**: A library for managing form state and validation, allowing for easy integration of form controls and enhancing performance by reducing re-renders.
+- **Yup**: A JavaScript schema builder for validating and parsing user input, used in conjunction with React Hook Form to ensure data integrity and provide user-friendly error messages.
+- **Styled Components**: A library for styling React components with tagged template literals, enhancing the visual presentation of the app.
+- **React Native MMKV**: A fast key-value storage library for React Native, used for persisting data locally.
+- **i18next**: A powerful internationalization framework for JavaScript, enabling multilingual support in the application.
+- **Jest**: A JavaScript testing framework for unit testing, ensuring code quality and reliability.
 
 ## ⚙️ Features
 
-- **Data Fetching**: Fetch and display real-time floating rates from an external API using Axios.
-- **State Management**: Utilize Zustand for managing application state efficiently.
-- **Responsive Design**: Adapts to various screen sizes, providing an optimal experience across devices.
-- **Async Storage**: Persist data locally using Async Storage for offline access and faster load times.
+- **Data Fetching**: Fetch and display live weather data from an external API, providing users with up-to-date information.
+- **State Management**: Use Redux and Redux Toolkit for efficient state management, with React Native MMKV providing fast and persistent local storage.
+- **Dynamic Routing**: Implement React Navigation to create a smooth and intuitive navigation experience across the app’s screens.
+- **Form Validation**: Combine React Hook Form with Yup for robust form validation, ensuring that user inputs are properly validated, enhancing user experience and data integrity.
+- **Persistent Storage**: Store user preferences and application data locally using React Native MMKV for quick access and offline support.
+- **Localization Support**: Implement i18next for multilingual support, making the app accessible to a wider audience.
+- **Animation Effects**: Leverage React Native Reanimated for smooth transitions and animations, enhancing the overall user interface.
+- **Unit Testing**: Ensure code quality with unit tests using Jest and React Native Testing Library, verifying component functionality and behavior.
 
 ## 📦 Project Structure
 
@@ -74,7 +85,8 @@ npm install
 
 3. Configure json-server for API mocking:
 
-- Put your private IP and desired port in the .env file.
+- Specify your private IP and desired port in the `.env` file.
+- Update the `server` script in `package.json` with your private IP and chosen port.
 
 4. Start the API server:
 
@@ -110,3 +122,7 @@ yarn android
 # or
 npm run android
 ```
+
+## 📝 Observations
+
+The original testing requirements specified the use of MirageJS for mocking the API. However, MirageJS caused issues when running the app on both Android and iOS platforms. As a result, I opted to use json-server for API mocking to streamline the development process without compromising functionality.
