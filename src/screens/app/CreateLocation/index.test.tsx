@@ -1,4 +1,6 @@
 import React from 'react';
+import { t } from 'i18next';
+import { I18nextProvider } from 'react-i18next';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -8,10 +10,15 @@ import { useLocations } from '@/features/locations';
 import { theme } from '@/theme';
 import { filterCitiesByState } from '@/utils/filterCitiesByState';
 import states from '@/mock/states.json';
+import i18n from '@/lib/language/i18n';
 import { CreateLocation } from './index';
 
 const [firstState] = states;
 const [firstCity] = filterCitiesByState(Number(firstState.value));
+
+jest.mock('expo-localization', () => ({
+  getLocales: jest.fn(() => [{ languageCode: 'en' }]),
+}));
 
 jest.mock('react-native-toast-notifications', () => ({
   useToast: jest.fn(),
@@ -52,11 +59,13 @@ const renderComponent = () => {
   });
 
   return render(
-    <ThemeProvider theme={theme}>
-      <NavigationContainer>
-        <CreateLocation />
-      </NavigationContainer>
-    </ThemeProvider>,
+    <I18nextProvider i18n={i18n}>
+      <ThemeProvider theme={theme}>
+        <NavigationContainer>
+          <CreateLocation />
+        </NavigationContainer>
+      </ThemeProvider>
+    </I18nextProvider>,
   );
 };
 
@@ -68,7 +77,7 @@ describe('CreateLocation', () => {
   it('renders correctly', () => {
     const { getByText } = renderComponent();
 
-    expect(getByText('location.submit_button')).toBeTruthy();
+    expect(getByText(t('location.submit_button'))).toBeTruthy();
     expect(getByText(firstState.label)).toBeTruthy();
   });
 
@@ -78,12 +87,12 @@ describe('CreateLocation', () => {
     fireEvent.press(getByText(firstState.label));
     fireEvent.press(getByText(firstCity.label));
 
-    fireEvent.press(getByText('location.submit_button'));
+    fireEvent.press(getByText(t('location.submit_button')));
 
     await waitFor(() => {
       expect(mockGoBack).toHaveBeenCalled();
       expect(mockToast.show).toHaveBeenCalledWith(
-        'location.create_location_success',
+        t('location.create_location_success'),
         {
           type: 'success',
           placement: 'top',
@@ -102,11 +111,11 @@ describe('CreateLocation', () => {
     fireEvent.press(getByText(firstState.label));
     fireEvent.press(getByText(firstCity.label));
 
-    fireEvent.press(getByText('location.submit_button'));
+    fireEvent.press(getByText(t('location.submit_button')));
 
     await waitFor(() => {
       expect(mockToast.show).toHaveBeenCalledWith(
-        'location.create_location_error',
+        t('location.create_location_error'),
         {
           type: 'error',
           placement: 'top',

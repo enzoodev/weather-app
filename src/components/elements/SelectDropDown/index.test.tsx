@@ -1,8 +1,15 @@
 import React from 'react';
+import { t } from 'i18next';
+import { I18nextProvider } from 'react-i18next';
 import { render, fireEvent } from '@testing-library/react-native';
 import { ThemeProvider } from 'styled-components/native';
 import { theme } from '@/theme';
+import i18n from '@/lib/language/i18n';
 import { SelectDropDown, SelectDropDownItem } from './index';
+
+jest.mock('expo-localization', () => ({
+  getLocales: jest.fn(() => [{ languageCode: 'en' }]),
+}));
 
 describe('SelectDropDown', () => {
   const mockItems: SelectDropDownItem[] = [
@@ -13,25 +20,27 @@ describe('SelectDropDown', () => {
 
   const renderComponent = (props = {}) =>
     render(
-      <ThemeProvider theme={theme}>
-        <SelectDropDown
-          placeholder="Select an option"
-          items={mockItems}
-          value={null}
-          onSelectValue={jest.fn()}
-          {...props}
-        />
-      </ThemeProvider>,
+      <I18nextProvider i18n={i18n}>
+        <ThemeProvider theme={theme}>
+          <SelectDropDown
+            placeholder="Select an option"
+            items={mockItems}
+            value={null}
+            onSelectValue={jest.fn()}
+            {...props}
+          />
+        </ThemeProvider>
+      </I18nextProvider>,
     );
 
   it('renders the placeholder when no value is selected', () => {
     const { getByText } = renderComponent();
-    expect(getByText('Select an option')).toBeTruthy();
+    expect(getByText(t('selectDropDown.placeholder'))).toBeTruthy();
   });
 
   it('opens the dropdown when the header is clicked', () => {
     const { getByText } = renderComponent();
-    fireEvent.press(getByText('Select an option'));
+    fireEvent.press(getByText(t('selectDropDown.placeholder')));
     expect(getByText('Option 1')).toBeTruthy();
   });
 
@@ -39,7 +48,7 @@ describe('SelectDropDown', () => {
     const onSelectValue = jest.fn();
     const { getByText } = renderComponent({ onSelectValue });
 
-    fireEvent.press(getByText('Select an option'));
+    fireEvent.press(getByText(t('selectDropDown.placeholder')));
     fireEvent.press(getByText('Option 1'));
     expect(onSelectValue).toHaveBeenCalledWith(mockItems[0]);
   });

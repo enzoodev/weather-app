@@ -1,4 +1,5 @@
 import React from 'react';
+import { I18nextProvider } from 'react-i18next';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import { useLocations } from '@/features/locations';
 import { useToast } from 'react-native-toast-notifications';
@@ -6,7 +7,12 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import { NavigationContainer } from '@react-navigation/native';
 import { ThemeProvider } from 'styled-components/native';
 import { theme } from '@/theme';
+import i18n from '@/lib/language/i18n';
 import { LocationDetails } from './index';
+
+jest.mock('expo-localization', () => ({
+  getLocales: jest.fn(() => [{ languageCode: 'en' }]),
+}));
 
 jest.mock('@react-navigation/native', () => {
   const originalModule = jest.requireActual('@react-navigation/native');
@@ -31,11 +37,13 @@ jest.mock('@/features/locations', () => ({
 
 const renderComponent = () => {
   return render(
-    <NavigationContainer>
-      <ThemeProvider theme={theme}>
-        <LocationDetails />
-      </ThemeProvider>
-    </NavigationContainer>,
+    <I18nextProvider i18n={i18n}>
+      <NavigationContainer>
+        <ThemeProvider theme={theme}>
+          <LocationDetails />
+        </ThemeProvider>
+      </NavigationContainer>
+    </I18nextProvider>,
   );
 };
 

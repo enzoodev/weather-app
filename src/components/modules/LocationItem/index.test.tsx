@@ -1,9 +1,15 @@
 import React from 'react';
+import { I18nextProvider } from 'react-i18next';
 import { render, fireEvent } from '@testing-library/react-native';
 import { ThemeProvider } from 'styled-components/native';
 import { TLocation } from '@/domain/entities/Location';
 import { theme } from '@/theme';
+import i18n from '@/lib/language/i18n';
 import { LocationItem } from './index';
+
+jest.mock('expo-localization', () => ({
+  getLocales: jest.fn(() => [{ languageCode: 'en' }]),
+}));
 
 describe('<LocationItem />', () => {
   const mockItem = {
@@ -14,7 +20,11 @@ describe('<LocationItem />', () => {
   } as TLocation;
 
   const renderWithTheme = (component: React.ReactNode) => {
-    return render(<ThemeProvider theme={theme}>{component}</ThemeProvider>);
+    return render(
+      <I18nextProvider i18n={i18n}>
+        <ThemeProvider theme={theme}>{component}</ThemeProvider>
+      </I18nextProvider>,
+    );
   };
 
   it('should render correctly', () => {
